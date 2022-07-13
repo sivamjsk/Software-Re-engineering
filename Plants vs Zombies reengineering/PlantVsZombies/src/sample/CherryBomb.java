@@ -10,16 +10,36 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+/**
+ * The Class CherryBomb.
+ */
 public class CherryBomb extends Plant{
 
+    /** The roasted zombies. */
     private ArrayList<Zombie> roastedZombies;
+    
+    /** The powie. */
     transient ImageView powie;
 
+    /**
+     * Instantiates a new cherry bomb.
+     *
+     * @param x the x
+     * @param y the y
+     * @param row the row
+     * @param col the col
+     */
     public CherryBomb(int x, int y,int row,int col) {
         super(x, y, "/assets/anim_cherrybomb.gif", 4,90,68,row,col);
         this.path = getClass().getResource("/assets/anim_cherrybomb.gif").toString();
     }
 
+    /**
+     * Make image.
+     *
+     * @param lawn the lawn
+     */
     @Override
     public void makeImage(GridPane lawn){
         super.makeImage(lawn);
@@ -31,6 +51,11 @@ public class CherryBomb extends Plant{
         this.roastedZombies = new ArrayList<Zombie>();
     }
 
+    /**
+     * Attack.
+     *
+     * @param pane the pane
+     */
     @Override
     public void attack(Pane pane) {
         pane.getChildren().add(powie);
@@ -85,6 +110,9 @@ public class CherryBomb extends Plant{
         t.start();
     }
 
+    /**
+     * Removepowie.
+     */
     public void removepowie(){
         Thread t = new Thread(() -> {
             try {

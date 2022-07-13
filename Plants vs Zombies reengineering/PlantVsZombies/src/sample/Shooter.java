@@ -11,17 +11,41 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+
+/**
+ * The Class Shooter.
+ */
 public class Shooter extends Plant {
 
+    /** The shooter timeline. */
     transient protected Timeline shooterTimeline;
+    
+    /** The lane. */
     protected int lane;
 
+    /**
+     * Instantiates a new shooter.
+     *
+     * @param x the x
+     * @param y the y
+     * @param path the path
+     * @param hp the hp
+     * @param width the width
+     * @param height the height
+     * @param row the row
+     * @param col the col
+     */
     public Shooter(int x, int y, String path, int hp, int width, int height,int row,int col){
         super(x,y,path,hp,width,height,row,col);
         this.lane = col;
 //        attack();
     }
 
+    /**
+     * Attack.
+     *
+     * @param pane the pane
+     */
     @Override
     public void attack(Pane pane){
         Timeline peaShooter = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
@@ -48,16 +72,30 @@ public class Shooter extends Plant {
         this.shooterTimeline = peaShooter;
         GamePlayController.animationTimelines.add(peaShooter);
     }
+    
+    /**
+     * Gets the shooter timeline.
+     *
+     * @return the shooter timeline
+     */
     public Timeline getShooterTimeline()
     {
         return(this.shooterTimeline);
     }
 
+    /**
+     * Gets the shooter lane.
+     *
+     * @return the shooter lane
+     */
     public int getShooterLane()
     {
         return(this.lane);
     }
 
+    /**
+     * Check hp.
+     */
     public void checkHp()
     {
         if(getHp()<=0)

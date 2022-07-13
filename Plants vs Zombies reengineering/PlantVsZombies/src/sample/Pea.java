@@ -10,13 +10,38 @@ import javafx.util.Duration;
 import java.io.File;
 import java.util.Iterator;
 
+
+/**
+ * The Class Pea.
+ */
 public class Pea extends GameElements{
+    
+    /** The lane. */
     private int lane;
+    
+    /** The plant position. */
     private int plantPosition;
+    
+    /** The pea animation. */
     transient private Timeline peaAnimation;
+    
+    /** The pea ID. */
     private static int peaID=0;
+    
+    /** The flag. */
     private boolean flag;
+    
+    /** The thispea. */
     private int thispea;
+    
+    /**
+     * Instantiates a new pea.
+     *
+     * @param x the x
+     * @param y the y
+     * @param plantPosition the plant position
+     * @param lane the lane
+     */
     public Pea(int x, int y, int plantPosition, int lane) {
         super(x, y, "/assets/pea.png",20,20);
 //        super.makeImage();
@@ -27,6 +52,9 @@ public class Pea extends GameElements{
         this.flag = false;
     }
 
+    /**
+     * Move pea.
+     */
     public void movePea(){
         if(x<=1050)
         {
@@ -43,6 +71,9 @@ public class Pea extends GameElements{
         checkZombieCollision();
     }
 
+    /**
+     * Shoot pea.
+     */
     public void shootPea(){
         Timeline animation = new Timeline(new KeyFrame(Duration.millis(5), e -> movePea()));
         animation.setCycleCount(1050);
@@ -51,6 +82,9 @@ public class Pea extends GameElements{
         GamePlayController.animationTimelines.add(animation);
     }
 
+    /**
+     * Check zombie collision.
+     */
     public void checkZombieCollision()
     {
         synchronized (GamePlayController.allZombies) {

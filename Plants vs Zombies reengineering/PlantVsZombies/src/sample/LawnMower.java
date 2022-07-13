@@ -14,16 +14,37 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Iterator;
 
+
+/**
+ * The Class LawnMower.
+ */
 public class LawnMower extends GameElements{
+    
+    /** The lane. */
     int lane;
+    
+    /** The activated. */
     boolean activated = false;
+    
+    /** The activated path. */
     String activatedPath=getClass().getResource("/assets/lawnmowerActivated.gif").toString();
+    
+    /**
+     * Instantiates a new lawn mower.
+     *
+     * @param x the x
+     * @param y the y
+     * @param lane the lane
+     */
     public LawnMower(int x, int y, int lane){
         super(x, y, "/assets/lawnmowerIdle.gif", 81, 77);
         this.path=getClass().getResource("/assets/lawnmowerIdle.gif").toString();
         this.lane=lane;
     }
 
+    /**
+     * Check zombie.
+     */
     public void checkZombie()
     {
         Timeline findZombie = new Timeline(new KeyFrame(Duration.millis(50), new EventHandler<ActionEvent>() {
@@ -56,6 +77,9 @@ public class LawnMower extends GameElements{
         findZombie.play();
     }
 
+    /**
+     * Activate.
+     */
     public void activate(){
         img.setImage(new Image(activatedPath, 81, 77, false, false));
         Media lawnmower = new Media(getClass().getResource("/assets/sounds/lawnmower.wav").toString());
@@ -68,6 +92,10 @@ public class LawnMower extends GameElements{
         animation.play();
         GamePlayController.animationTimelines.add(animation);
     }
+    
+    /**
+     * Move mower.
+     */
     public void moveMower()
     {
         if(getX()<=1500)

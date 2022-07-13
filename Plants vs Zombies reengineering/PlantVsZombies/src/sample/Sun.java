@@ -10,11 +10,28 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+
+/**
+ * The Class Sun.
+ */
 public class Sun extends GameElements{
+    
+    /** The x. */
     private int x;
+    
+    /** The y. */
     private int y;
+    
+    /** The timeouttime. */
     private final int timeouttime;
 
+    /**
+     * Instantiates a new sun.
+     *
+     * @param x the x
+     * @param y the y
+     * @param fallingSun the falling sun
+     */
     public Sun(int x, int y, boolean fallingSun)
     {
         super(x, y, "/assets/sun.png", 50, 50);
@@ -24,6 +41,10 @@ public class Sun extends GameElements{
         else timeouttime=5000;
         disappearAfterTime();
     }
+    
+    /**
+     * Disappear after time.
+     */
     public void disappearAfterTime(){
         Thread t = new Thread(() -> {
             try {
@@ -37,6 +58,11 @@ public class Sun extends GameElements{
         t.start();
     }
 
+    /**
+     * Make image.
+     *
+     * @param p the p
+     */
     @Override
     public void makeImage(Pane p)
     {
@@ -49,6 +75,9 @@ public class Sun extends GameElements{
 
     }
 
+    /**
+     * Move sun.
+     */
     public void moveSun()
     {
         if(getY()<=550)
@@ -57,6 +86,9 @@ public class Sun extends GameElements{
         }
     }
 
+    /**
+     * Drop sun.
+     */
     public void dropSun()
     {
         Timeline animation = new Timeline(new KeyFrame(Duration.millis(12),e -> moveSun()));

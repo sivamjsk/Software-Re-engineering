@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Plants vs Zombies reengineering/PlantVsZombies/src"/>
+	<classpathentry kind="lib" path="Plants vs Zombies reengineering/Plants-Vs-Zombies-JAR/PlantVsZombies.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

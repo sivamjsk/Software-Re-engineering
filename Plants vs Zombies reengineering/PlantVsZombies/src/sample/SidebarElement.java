@@ -6,23 +6,62 @@ import javafx.scene.layout.Pane;
 
 import java.util.HashMap;
 
+
+/**
+ * The Class SidebarElement.
+ */
 public class SidebarElement extends GameElements{
+    
+    /** The card selected. */
     private static int cardSelected=-1;
+    
+    /** The timeout time. */
     private int timeoutTime;
+    
+    /** The is disabled. */
     private boolean isDisabled=false;
+    
+    /** The selected border. */
     private static ImageView selectedBorder;
+    
+    /** The all elements. */
     private static HashMap<Integer,SidebarElement> allElements;
+    
+    /** The cost. */
     private final int cost;
+    
+    /**
+     * Instantiates a new sidebar element.
+     *
+     * @param x the x
+     * @param y the y
+     * @param path the path
+     * @param width the width
+     * @param height the height
+     * @param cost the cost
+     */
     public SidebarElement(int x,int y,String path, int width,int height,int cost){
         super(x,y,path,width,height);
         this.cost=cost;
 //        super.makeImage();
     }
 
+    /**
+     * Gets the cost.
+     *
+     * @return the cost
+     */
     public int getCost(){
         return this.cost;
     }
 
+    /**
+     * Gets the side bar elements.
+     *
+     * @param level the level
+     * @param pane the pane
+     * 
+     */
     public static void getSideBarElements(int level,Pane pane){
         String path;
         int x;
@@ -131,25 +170,51 @@ public class SidebarElement extends GameElements{
         selectedBorder.setDisable(true);
     }
 
+    /**
+     * Gets the card selected.
+     *
+     * @return the card selected
+     */
     public static int getCardSelected() {
         return cardSelected;
     }
+    
+    /**
+     * Sets the card selected.
+     *
+     * @param i the new card selected
+     */
     private static void setCardSelected(int i){
         cardSelected=i;
         selectedBorder.setVisible(true);
         selectedBorder.setX(allElements.get(cardSelected).getX()-5);
         selectedBorder.setY(allElements.get(cardSelected).getY()-5);
     }
+    
+    /**
+     * Setter method to print the card selected to null.
+     */
     public static void setCardSelectedToNull(){
         cardSelected=-1;
         selectedBorder.setVisible(false);
     }
 
+    /**
+     * Gets the element.
+     *
+     * @param x the x
+     * @return the element
+     */
     public static SidebarElement getElement(int x){
         if (allElements.containsKey(x)) return allElements.get(x);
         else return null;
     }
 
+    /**
+     * Sets the disabled on.
+     *
+     * @param pane the new disabled on
+     */
     public void setDisabledOn(Pane pane){
         this.isDisabled=true;
         ImageView im =new ImageView(new Image(getClass().getResource("/assets/lock.png").toString(),50.0,50.0,false,false));

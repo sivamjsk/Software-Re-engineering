@@ -11,51 +11,74 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
+
+/**
+ * The Class LevelMenuController.
+ */
 public class LevelMenuController {
 
+    /** The night mode. */
     @FXML
     public ImageView nightMode;
 
+    /** The day mode. */
     @FXML
     public ImageView dayMode;
 
+    /** The status. */
     public static boolean status = true;
 
+    /** The level root. */
     @FXML
     private AnchorPane levelRoot;
 
+    /** The level 1 button. */
     @FXML
     private ImageView level1button;
 
+    /** The level 2 button. */
     @FXML
     private ImageView level2button;
 
+    /** The level 3 button. */
     @FXML
     private ImageView level3button;
 
+    /** The level 4 button. */
     @FXML
     private ImageView level4button;
 
+    /** The level 5 button. */
     @FXML
     private ImageView level5button;
 
+    /** The lock 2. */
     @FXML
     private ImageView lock2;
 
+    /** The lock 3. */
     @FXML
     private ImageView lock3;
 
+    /** The lock 4. */
     @FXML
     private ImageView lock4;
 
+    /** The lock 5. */
     @FXML
     private ImageView lock5;
 
+    /** The backbutton. */
     @FXML
     private ImageView backbutton;
+    
+    /** The night theme. */
     @FXML
     private ImageView nightTheme;
 
+    /**
+     * Initialize.
+     */
     public void initialize(){
 //        nightTheme=new ImageView(new Image("file:src/sample/assets/menu_dark_mode.png"));
 //        levelRoot.getChildren().add(nightTheme);
@@ -104,6 +127,13 @@ public class LevelMenuController {
         }
 
     }
+    
+    /**
+     * Glow image.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void glowImage(MouseEvent event) throws IOException{
         Glow glow=new Glow();
@@ -112,6 +142,12 @@ public class LevelMenuController {
         glow.setLevel(0.2);
     }
 
+    /**
+     * Stop glowing.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void stopGlowing(MouseEvent event) throws IOException{
         Node source= (Node) event.getSource();
@@ -120,6 +156,12 @@ public class LevelMenuController {
         glow.setLevel(0.0);
     }
 
+    /**
+     * Launch level 1.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void launchLevel1(MouseEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
@@ -130,6 +172,12 @@ public class LevelMenuController {
 
     }
 
+    /**
+     * Launch level 2.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void launchLevel2(MouseEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
@@ -140,6 +188,12 @@ public class LevelMenuController {
 
     }
 
+    /**
+     * Launch level 3.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void launchLevel3(MouseEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
@@ -150,6 +204,12 @@ public class LevelMenuController {
 
     }
 
+    /**
+     * Launch level 4.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void launchLevel4(MouseEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
@@ -160,6 +220,12 @@ public class LevelMenuController {
 
     }
 
+    /**
+     * Launch level 5.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void launchLevel5(MouseEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
@@ -169,12 +235,24 @@ public class LevelMenuController {
         levelRoot.getChildren().setAll(pane);
     }
 
+    /**
+     * Load prev menu.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void loadPrevMenu(MouseEvent event) throws IOException{
         AnchorPane pane= FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         levelRoot.getChildren().setAll(pane);
     }
 
+    /**
+     * Change game theme.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void changeGameTheme(MouseEvent event) throws IOException{
         if(dayMode.isVisible()==false)
@@ -197,6 +275,11 @@ public class LevelMenuController {
         }
     }
 
+    /**
+     * Gets the day mode.
+     *
+     * @return the day mode
+     */
     public static boolean getDayMode()
     {
         return(status);

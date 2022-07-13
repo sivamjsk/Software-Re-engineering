@@ -14,19 +14,54 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Iterator;
 
+
+/**
+ * The Class Zombie.
+ */
 public abstract class Zombie extends GameElements {
 
+    /** The hp. */
     protected int hp;
+    
+    /** The x. */
     protected int x;
+    
+    /** The y. */
     protected int y;
+    
+    /** The attack power. */
     protected int attackPower;
+    
+    /** The lane. */
     protected int lane;
+    
+    /** The dx. */
     protected int dx;
+    
+    /** The zombie animation. */
     transient protected Timeline zombieAnimation;
+    
+    /** The reached plant. */
     protected boolean reachedPlant = false;
+    
+    /** The is eating. */
     protected boolean isEating = false;
+    
+    /** The chomping. */
     protected transient Timeline chomping;
 
+    /**
+     * Instantiates a new zombie.
+     *
+     * @param hp the hp
+     * @param ap the ap
+     * @param p the p
+     * @param x the x
+     * @param y the y
+     * @param width the width
+     * @param height the height
+     * @param lane the lane
+     */
     public Zombie(int hp, int ap, String p, int x, int y, int width, int height, int lane) {
         super(x, y, p, width, height);
         this.hp = hp;
@@ -36,14 +71,29 @@ public abstract class Zombie extends GameElements {
         this.chomping = new Timeline();
     }
 
+    /**
+     * Gets the hp.
+     *
+     * @return the hp
+     */
     public int getHp() {
         return this.hp;
     }
 
+    /**
+     * Gets the lane.
+     *
+     * @return the lane
+     */
     public int getLane() {
         return (this.lane);
     }
 
+    /**
+     * Sets the hp.
+     *
+     * @param hp the new hp
+     */
     public void setHp(int hp) {
         this.hp = hp;
         if(hp<=0){
@@ -76,6 +126,9 @@ public abstract class Zombie extends GameElements {
         }
     }
 
+    /**
+     * Roast zombie.
+     */
     public void roastZombie(){
         img.setImage(new Image(getClass().getResource("/assets/burntZombie.gif").toString(), (double) 68,(double) 118,false,false));
         this.dx=0;
@@ -95,10 +148,18 @@ public abstract class Zombie extends GameElements {
 
     }
 
+    /**
+     * Sets the lane.
+     *
+     * @param lane the new lane
+     */
     public void setLane(int lane) {
         this.y = lane;
     }
 
+    /**
+     * Check reached house.
+     */
     public void checkReachedHouse() {
         if (img.getX() <= 220) {
             GamePlayController.wonGame = -1;
@@ -109,6 +170,9 @@ public abstract class Zombie extends GameElements {
         }
     }
 
+    /**
+     * Move zombie.
+     */
     public void moveZombie() {
         Timeline animation = new Timeline(new KeyFrame(Duration.millis(70), e -> zombieWalk()));
         animation.setCycleCount(Animation.INDEFINITE);
@@ -117,6 +181,9 @@ public abstract class Zombie extends GameElements {
         GamePlayController.animationTimelines.add(animation);
     }
 
+    /**
+     * Zombie walk.
+     */
     public void zombieWalk()
     {
         if(getX()>220 && this.hp>0)
@@ -133,11 +200,19 @@ public abstract class Zombie extends GameElements {
         }
     }
 
+    /**
+     * Gets the zombie animation.
+     *
+     * @return the zombie animation
+     */
     public Timeline getZombieAnimation()
     {
         return this.zombieAnimation;
     }
 
+    /**
+     * Chomp plant.
+     */
     public void chompPlant()
     {
         Media chomp = new Media(getClass().getResource("/assets/sounds/chomp.wav").toString());
@@ -149,6 +224,9 @@ public abstract class Zombie extends GameElements {
         mediaPlayer.play();
     }
 
+    /**
+     * Eat plant.
+     */
     public void eatPlant()
     {
         int foundPlant = 0;
