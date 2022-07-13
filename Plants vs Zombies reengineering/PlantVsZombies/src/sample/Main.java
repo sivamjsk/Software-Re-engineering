@@ -11,10 +11,24 @@ import javafx.util.Duration;
 import java.io.*;
 import java.net.URL;
 
+
+/**
+ * The Class Main.
+ */
 public class Main extends Application {
+    
+    /** The media player. */
     public static MediaPlayer mediaPlayer;
+    
+    /** The currentd. */
     private static Database currentd;
 
+    /**
+     * Start.
+     *
+     * @param primaryStage the primary stage
+     * @throws Exception the exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         deserialize();
@@ -27,6 +41,9 @@ public class Main extends Application {
     }
 
 
+    /**
+     * Adds the music.
+     */
     public void addMusic() {
         Media sound = new Media(getClass().getResource("/assets/background.wav").toString());
         mediaPlayer = new MediaPlayer(sound);
@@ -37,9 +54,20 @@ public class Main extends Application {
         mediaPlayer.play();
     }
 
+    /**
+     * Gets the database.
+     *
+     * @return the database
+     */
     public static Database getDatabase(){
         return currentd;
     }
+    
+    /**
+     * Serialize.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void serialize() throws IOException {
         ObjectOutputStream out=null;
         try {
@@ -52,6 +80,14 @@ public class Main extends Application {
             System.exit(0);
         }
     }
+    
+    /**
+     * Deserialize.
+     *
+     * @throws ClassNotFoundException the class not found exception
+     * @throws FileNotFoundException the file not found exception
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public static void deserialize() throws ClassNotFoundException, FileNotFoundException, IOException{
         ObjectInputStream in = null;
         try {
@@ -68,6 +104,11 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

@@ -11,18 +11,43 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+
+/**
+ * The Class Sunflower.
+ */
 public class Sunflower extends Plant{
+    
+    /** The sun producer. */
     transient private Timeline sunProducer;
+    
+    /**
+     * Instantiates a new sunflower.
+     *
+     * @param x the x
+     * @param y the y
+     * @param row the row
+     * @param col the col
+     */
     public Sunflower(int x, int y,int row,int col){
         super(x,y,"/assets/sunflower.gif",100,73,74,row,col);
         this.path = getClass().getResource("/assets/sunflower.gif").toString();
     }
 
+    /**
+     * Attack.
+     *
+     * @param pane the pane
+     */
     @Override
     public void attack(Pane pane){
         produceSun(pane);
     }
 
+    /**
+     * Produce sun.
+     *
+     * @param pane the pane
+     */
     public void produceSun(Pane pane){
         Timeline stopGlow = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
@@ -61,11 +86,20 @@ public class Sunflower extends Plant{
         GamePlayController.animationTimelines.add(startGlow);
         GamePlayController.animationTimelines.add(stopGlow);
     }
+    
+    /**
+     * Gets the timeline.
+     *
+     * @return the timeline
+     */
     public Timeline getTimeline()
     {
         return this.sunProducer;
     }
 
+    /**
+     * Check hp.
+     */
     public void checkHp()
     {
         if(getHp()<=0)

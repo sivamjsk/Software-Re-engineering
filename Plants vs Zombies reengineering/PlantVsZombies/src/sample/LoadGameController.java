@@ -16,24 +16,37 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ * The Class LoadGameController.
+ */
 public class LoadGameController {
 
+    /** The load game root. */
     @FXML
     private AnchorPane loadGameRoot;
 
+    /** The game state list. */
     @FXML
     private ListView gameStateList;
 
+    /** The back button. */
     @FXML
     private ImageView backButton;
 
+    /** The delete progress. */
     @FXML
     private Button deleteProgress;
+    
+    /** The d. */
     ObservableList<DataTable> d= FXCollections.observableArrayList(Main.getDatabase().getDatabaseFiles());
 
 
     //   private ObservableList<String> items = FXCollections.observableArrayList("[14:50:00] [04-11-19] [Level 3]", "[19:20:45] [06-11-19] [Level 1]", "[09:22:16] [09-11-19] [Level 5]");
-//    private ObservableList<String> timeStamps;
+/**
+     * Initialize.
+     */
+    //    private ObservableList<String> timeStamps;
     @FXML
     public void initialize()
     {
@@ -43,6 +56,12 @@ public class LoadGameController {
         gameStateList.setItems(d);
     }
 
+    /**
+     * Load prev menu.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void loadPrevMenu(MouseEvent event) throws IOException {
         AnchorPane pane= FXMLLoader.load(getClass().getResource("MainPage.fxml"));
@@ -50,6 +69,12 @@ public class LoadGameController {
     }
 
 
+    /**
+     * Handle mouse click.
+     *
+     * @param event the event
+     * @throws Exception the exception
+     */
     @FXML
     void handleMouseClick(MouseEvent event) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
@@ -62,6 +87,12 @@ public class LoadGameController {
 
     }
 
+    /**
+     * Delete all progress.
+     *
+     * @param event the event
+     * @throws Exception the exception
+     */
     @FXML
     void deleteAllProgress(MouseEvent event) throws Exception{
         File file = new File("database.txt");

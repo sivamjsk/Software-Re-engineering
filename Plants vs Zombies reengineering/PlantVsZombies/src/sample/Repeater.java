@@ -10,12 +10,31 @@ import javafx.util.Duration;
 
 import java.util.Iterator;
 
+
+/**
+ * The Class Repeater.
+ */
 public class Repeater extends Shooter {
+    
+    /**
+     * Instantiates a new repeater.
+     *
+     * @param x the x
+     * @param y the y
+     * @param row the row
+     * @param col the col
+     */
     public Repeater(int x, int y,int row,int col) {
         super(x, y, "/assets/repeater.gif", 150,60,62,row,col);
         this.path=getClass().getResource("/assets/repeater.gif").toString();
 
     }
+    
+    /**
+     * Attack.
+     *
+     * @param pane the pane
+     */
     @Override
     public void attack(Pane pane){
         Timeline peaShooter = new Timeline(new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {

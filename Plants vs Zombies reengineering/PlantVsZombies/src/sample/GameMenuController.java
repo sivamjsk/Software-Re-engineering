@@ -11,36 +11,78 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * The Class GameMenuController.
+ */
 public class GameMenuController {
+    
+    /** The Game play root. */
     @FXML
     private AnchorPane GamePlayRoot;
 
+    /** The Game menu root. */
     @FXML
     private AnchorPane GameMenuRoot;
 
+    /** The return to main menu button. */
     @FXML
     private ImageView returnToMainMenuButton;
 
+    /** The save game button. */
     @FXML
     private ImageView saveGameButton;
 
+    /** The restart game button. */
     @FXML
     private ImageView restartGameButton;
 
+    /** The Game menu message. */
     @FXML
     private Label GameMenuMessage;
 
+    /** The level number. */
     @FXML
     private int levelNumber;
+    
+    /** The data. */
     private DataTable data;
+    
+    /** The all plants. */
     public static List<Plant> allPlants;
+    
+    /** The all mowers. */
     private static List<LawnMower> allMowers;
+    
+    /** The sun count. */
     private static int sunCount;
+    
+    /** The all zombies. */
     private static List<Zombie> allZombies;
+    
+    /** The time. */
     private static double time;
+    
+    /** The zombie list 1. */
     private static ArrayList<Integer> zombieList1;
+    
+    /** The zombie list 2. */
     private static ArrayList<Integer> zombieList2;
 
+    /**
+     * Inits the data.
+     *
+     * @param gamePlayRoot the game play root
+     * @param levelNumber the level number
+     * @param d the d
+     * @param sCount the s count
+     * @param allPlant the all plant
+     * @param allZombie the all zombie
+     * @param allLawnMowers the all lawn mowers
+     * @param timeElapsed the time elapsed
+     * @param zL1 the z L 1
+     * @param zL2 the z L 2
+     */
     @FXML
     public void initData(AnchorPane gamePlayRoot, int levelNumber, DataTable d, int sCount, List<Plant> allPlant, List<Zombie> allZombie, List<LawnMower> allLawnMowers, double timeElapsed, ArrayList<Integer> zL1, ArrayList<Integer> zL2){
         this.GamePlayRoot=gamePlayRoot;
@@ -55,6 +97,12 @@ public class GameMenuController {
         zombieList2 = zL2;
     }
 
+    /**
+     * Restart game.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void restartGame(MouseEvent event) throws IOException {
         GamePlayController.gameStatus = false;
@@ -71,6 +119,12 @@ public class GameMenuController {
         GamePlayRoot.getChildren().setAll(game);
     }
 
+    /**
+     * Save game.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void saveGame(MouseEvent event) throws IOException {
         GamePlayController.gameStatus = false;
@@ -82,6 +136,12 @@ public class GameMenuController {
 
     }
 
+    /**
+     * Show main menu.
+     *
+     * @param event the event
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @FXML
     void showMainMenu(MouseEvent event) throws IOException {
         GamePlayController.gameStatus = false;
