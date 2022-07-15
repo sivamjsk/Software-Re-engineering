@@ -257,6 +257,14 @@ public abstract class Zombie extends GameElements {
         }
     }
 
+    public void IfChompingStop()
+    {
+        if (this.chomping != null)
+        {
+            this.chomping.stop();
+        }
+    }
+
     public void IteratePlant(int n) {
         int foundPlant=0;
         synchronized (GamePlayController.allPlants) {
@@ -274,18 +282,12 @@ public abstract class Zombie extends GameElements {
                 else if ((p.row == getLane()) & (Math.abs(p.getX() - img.getX()) > n)) {
                     this.dx = -1;
                     this.reachedPlant = false;
-                    if (this.chomping != null) {
-                        this.chomping.stop();
-                    }
+                    IfChompingStop();
                 }
             }
-            if((foundPlant == 0)&(this.chomping != null)){
+            if (foundPlant == 0) {
                 this.dx = -1;
-                this.chomping.stop();
-                this.reachedPlant = false;
-            }
-            else if((foundPlant == 0)&(this.chomping == null)){
-                this.dx = -1;
+                IfChompingStop();
                 this.reachedPlant = false;
             }
         }
