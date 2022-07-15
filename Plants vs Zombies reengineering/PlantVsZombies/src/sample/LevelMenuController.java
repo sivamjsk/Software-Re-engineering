@@ -73,7 +73,7 @@ public class LevelMenuController {
      * Initialize.
      */
     public void initialize(){
-        if(status==true)
+        if(status)
         {
             nightTheme.setVisible(false);
             dayMode.setVisible(true);
@@ -245,7 +245,7 @@ public class LevelMenuController {
      */
     @FXML
     void changeGameTheme(MouseEvent event) throws IOException{
-        if(dayMode.isVisible()==false)
+        if(!dayMode.isVisible())
         {
             nightMode.setVisible(false);
             nightMode.setDisable(true);
@@ -254,7 +254,7 @@ public class LevelMenuController {
             status = true;
             nightTheme.setVisible(false);
         }
-        else if(nightMode.isVisible()==false)
+        else if(!nightMode.isVisible())
         {
             dayMode.setVisible(false);
             dayMode.setDisable(true);

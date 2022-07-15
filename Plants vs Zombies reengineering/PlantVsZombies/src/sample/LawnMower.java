@@ -54,7 +54,7 @@ public class LawnMower extends GameElements{
                             z = i.next();
                             if (z.getLane() == lane) {
                                 if (Math.abs(z.getX() - getX()) <= 30) {
-                                    if (activated == false) {
+                                    if (!activated) {
                                         activate();
                                         z.setHp(0);
                                         activated = true;

@@ -236,7 +236,7 @@ public abstract class Zombie extends GameElements {
                     {
                         foundPlant=1;
 
-                        if(reachedPlant==false)
+                        if(!reachedPlant)
                         {
                             reachedPlant = true;
                             isEating = true;

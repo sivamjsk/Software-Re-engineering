@@ -93,7 +93,7 @@ public class EndGameController {
     @FXML
     public void initData(int levelNumber, boolean gameWin,DataTable d){
         Main.getDatabase().removeData(d);
-        if (gameWin==false){
+        if (!gameWin){
             zombiesAteYourBrains.setVisible(true);
         }
         else{
