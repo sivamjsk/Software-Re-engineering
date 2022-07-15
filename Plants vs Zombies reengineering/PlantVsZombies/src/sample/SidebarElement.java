@@ -69,9 +69,6 @@ public class SidebarElement extends GameElements{
         int width=97;
         int height=58;
         allElements=new HashMap<Integer, SidebarElement>();
-        path="file:assets/sunflowerCard.png";
-        x=24;
-        y=79;
         if(level>=1){
             path="/assets/sunflowerCard.png";
             x=24;
