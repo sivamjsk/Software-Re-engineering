@@ -275,11 +275,11 @@ public abstract class Zombie extends GameElements {
                     this.dx = -1;
                     continue;
                 }
-                if ((p.row == getLane()) & (Math.abs(p.getX() - img.getX()) <= n)) {
+                if ((p.row == getLane()) && (Math.abs(p.getX() - img.getX()) <= n)) {
                     foundPlant = 1;
                     IfApproachingPlant(p);
                 }
-                else if ((p.row == getLane()) & (Math.abs(p.getX() - img.getX()) > n)) {
+                else if ((p.row == getLane()) && (Math.abs(p.getX() - img.getX()) > n)) {
                     this.dx = -1;
                     this.reachedPlant = false;
                     IfChompingStop();
