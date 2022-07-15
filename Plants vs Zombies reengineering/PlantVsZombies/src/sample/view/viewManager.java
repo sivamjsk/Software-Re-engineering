@@ -3,7 +3,6 @@ package sample.view;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.Button;
 
 
 /**

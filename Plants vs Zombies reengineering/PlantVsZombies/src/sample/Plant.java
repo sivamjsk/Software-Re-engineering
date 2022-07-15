@@ -6,8 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-import java.io.Serializable;
-import java.nio.file.spi.FileSystemProvider;
 
 
 /**

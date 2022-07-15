@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
@@ -51,7 +50,7 @@ public class EndGameController {
     private Button mainMenuButton;
 
     /** The l. */
-    private int l;
+
     
     /** The game win. */
     private boolean gameWin;

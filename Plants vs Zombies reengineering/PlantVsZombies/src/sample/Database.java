@@ -1,9 +1,5 @@
 package sample;
 
-import java.io.File;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 import java.io.*;
 import java.util.ArrayList;
