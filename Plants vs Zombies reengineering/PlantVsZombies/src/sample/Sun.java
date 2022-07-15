@@ -12,11 +12,11 @@ import javafx.util.Duration;
  */
 public class Sun extends GameElements{
     
-    /** The x. */
-    private int x;
-    
-    /** The y. */
-    private int y;
+//    /** The x. */
+//    private int x;
+//
+//    /** The y. */
+//    private int y;
     
     /** The timeouttime. */
     private final int timeouttime;

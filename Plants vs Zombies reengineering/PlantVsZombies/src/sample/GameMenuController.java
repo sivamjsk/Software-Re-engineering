@@ -21,18 +21,6 @@ public class GameMenuController {
     @FXML
     private AnchorPane GamePlayRoot;
 
-    /** The Game menu root. */
-    @FXML
-    private AnchorPane GameMenuRoot;
-
-    /** The return to main menu button. */
-    @FXML
-    private ImageView returnToMainMenuButton;
-
-    /** The save game button. */
-    @FXML
-    private ImageView saveGameButton;
-
     /** The restart game button. */
     @FXML
     private ImageView restartGameButton;

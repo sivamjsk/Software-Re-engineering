@@ -37,38 +37,11 @@ public class GamePlayController {
     /** The lawn image. */
     @FXML
     private ImageView lawnImage;
-    
-    /** The pea shooter buy. */
-    @FXML
-    private ImageView peaShooterBuy;
-    
-    /** The repeater buy. */
-    @FXML
-    private ImageView repeaterBuy;
-    
-    /** The cherry bomb buy. */
-    @FXML
-    private ImageView cherryBombBuy;
-    
-    /** The jalapeno buy. */
-    @FXML
-    private ImageView jalapenoBuy;
-    
-    /** The wallnut buy. */
-    @FXML
-    private ImageView wallnutBuy;
-    
-    /** The sun buy. */
-    @FXML
-    private ImageView sunBuy;
-    
+
     /** The sun count label. */
     @FXML
     private Label sunCountLabel;
     
-    /** The Game menu loader button. */
-    @FXML
-    private ImageView GameMenuLoaderButton;
     
     /** The progress bar. */
     @FXML

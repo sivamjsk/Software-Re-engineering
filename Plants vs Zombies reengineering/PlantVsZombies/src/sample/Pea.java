@@ -23,14 +23,14 @@ public class Pea extends GameElements{
     /** The pea animation. */
     transient private Timeline peaAnimation;
     
-    /** The pea ID. */
-    private static int peaID=0;
+//    /** The pea ID. */
+//    private static int peaID=0;
     
     /** The flag. */
     private boolean flag;
-    
+
     /** The thispea. */
-    private int thispea;
+//    private int thispea;
     
     /**
      * Instantiates a new pea.
@@ -46,7 +46,7 @@ public class Pea extends GameElements{
         this.path = getClass().getResource("/assets/pea.png").toString();
         this.plantPosition = plantPosition;
         this.lane = lane;
-        thispea = peaID++;
+//        thispea = peaID++;
         this.flag = false;
     }
 

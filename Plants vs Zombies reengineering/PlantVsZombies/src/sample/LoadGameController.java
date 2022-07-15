@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -27,9 +26,6 @@ public class LoadGameController {
     @FXML
     private ListView gameStateList;
 
-    /** The back button. */
-    @FXML
-    private ImageView backButton;
 
     /** The delete progress. */
     @FXML

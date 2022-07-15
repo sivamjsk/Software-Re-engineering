@@ -3,8 +3,6 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -21,29 +19,6 @@ public class MainPageController implements Initializable {
     @FXML
     private AnchorPane mainRoot;
 
-    /** The start game. */
-    @FXML
-    private Button startGame;
-
-    /** The start game 1. */
-    @FXML
-    private Button startGame1;
-
-    /** The startgame. */
-    @FXML
-    private ImageView startgame;
-
-    /** The exit game. */
-    @FXML
-    private ImageView exitGame;
-
-    /** The select level. */
-    @FXML
-    private ImageView selectLevel;
-
-    /** The load game. */
-    @FXML
-    private ImageView loadGame;
 
     /**
      * Exit game.

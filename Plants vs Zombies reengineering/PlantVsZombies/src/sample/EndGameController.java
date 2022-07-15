@@ -2,7 +2,6 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -45,15 +44,6 @@ public class EndGameController {
     @FXML
     private ImageView nextLevelButton;
 
-    /** The main menu button. */
-    @FXML
-    private Button mainMenuButton;
-
-    /** The l. */
-
-    
-    /** The game win. */
-    private boolean gameWin;
 
     /**
      * Go to main menu.

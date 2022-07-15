@@ -31,9 +31,6 @@ public class LevelMenuController {
     @FXML
     private AnchorPane levelRoot;
 
-    /** The level 1 button. */
-    @FXML
-    private ImageView level1button;
 
     /** The level 2 button. */
     @FXML
@@ -67,9 +64,6 @@ public class LevelMenuController {
     @FXML
     private ImageView lock5;
 
-    /** The backbutton. */
-    @FXML
-    private ImageView backbutton;
     
     /** The night theme. */
     @FXML
