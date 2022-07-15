@@ -227,8 +227,8 @@ public abstract class Zombie extends GameElements {
     /**
      * Eat plant.
      */
-    public void eatPlant()
-    {
+    public void innereatPlant(int n){
+
         int foundPlant = 0;
         synchronized (GamePlayController.allPlants)
         {
@@ -238,7 +238,7 @@ public abstract class Zombie extends GameElements {
                 Plant p = i.next();
                 if(p.row == getLane())
                 {
-                    if (Math.abs(p.getX()-img.getX())<=50)
+                    if (Math.abs(p.getX()-img.getX())<=n)
                     {
                         foundPlant=1;
 
@@ -298,5 +298,11 @@ public abstract class Zombie extends GameElements {
             }
             this.reachedPlant=false;
         }
+    }
+
+    public void eatPlant()
+    {
+        int n=25;
+        innereatPlant(n);
     }
 }

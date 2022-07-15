@@ -55,6 +55,19 @@ public class SidebarElement extends GameElements{
         return this.cost;
     }
 
+    public static void setSidebarElements(HashMap allElements,SidebarElement element, Pane pane, int timeout, int cardOrder) {
+        element.makeImage(pane);
+        element.timeoutTime = timeout;
+        allElements.put(cardOrder, element);
+        element.img.setOnMouseClicked(e -> {
+            if (!element.isDisabled) {
+                setCardSelected(cardOrder);
+                Shovel.getInstance().disable();
+            }
+        });
+    }
+
+
     /**
      * Gets the side bar elements.
      *
@@ -62,6 +75,7 @@ public class SidebarElement extends GameElements{
      * @param pane the pane
      * 
      */
+
     public static void getSideBarElements(int level,Pane pane){
         String path;
         int x;
@@ -76,91 +90,44 @@ public class SidebarElement extends GameElements{
             path="/assets/sunflowerCard.png";
             x=24;
             y=79;
-            SidebarElement sunflowerCard=new SidebarElement(x,y,path,width,height,50);
-            sunflowerCard.makeImage(pane);
-            sunflowerCard.timeoutTime=5000;
-            allElements.put(1,sunflowerCard);
-            sunflowerCard.img.setOnMouseClicked(e->{
-                if (!sunflowerCard.isDisabled){
-                    setCardSelected(1);
-                    Shovel.getInstance().disable();
-                }
-            });
+            SidebarElement sunflowerCard = new SidebarElement(x, y, path, width, height, 50);
+            setSidebarElements(allElements, sunflowerCard, pane, 5000,1);
+
         }
         if(level>=1){
             path="/assets/peashooterCard.png";
             x=22;
             y=147;
             SidebarElement peashooterCard=new SidebarElement(x,y,path,width,height,100);
-            peashooterCard.makeImage(pane);
-            peashooterCard.timeoutTime=6000;
-            allElements.put(2,peashooterCard);
-            peashooterCard.img.setOnMouseClicked(e->{
-                if (!peashooterCard.isDisabled){
-                      setCardSelected(2);
-                      Shovel.getInstance().disable();
-                }
-            });
+            setSidebarElements(allElements, peashooterCard, pane, 6000,2);
         }
         if (level>=2){
             path="/assets/wallnutCard.png";
             x=22;
             y=217;
             SidebarElement wallnutCard=new SidebarElement(x,y,path,width,height,50);
-            wallnutCard.makeImage(pane);
-            wallnutCard.timeoutTime=7000;
-            allElements.put(3,wallnutCard);
-            wallnutCard.img.setOnMouseClicked(e->{
-                if (!wallnutCard.isDisabled) {
-                    setCardSelected(3);
-                    Shovel.getInstance().disable();
-                }
-            });
+            setSidebarElements(allElements, wallnutCard, pane, 7000,3);
         }
         if (level>=3) {
             path="/assets/cherrybombCard.png";
             x=22;
             y=284;
             SidebarElement cherrybombCard=new SidebarElement(x,y,path,width,height,150);
-            cherrybombCard.makeImage(pane);
-            cherrybombCard.timeoutTime=15000;
-            allElements.put(4,cherrybombCard);
-            cherrybombCard.img.setOnMouseClicked(e->{
-                if (!cherrybombCard.isDisabled) {
-                    setCardSelected(4);
-                    Shovel.getInstance().disable();
-                }
-            });
+            setSidebarElements(allElements, cherrybombCard, pane, 15000,4);
         }
         if(level>=4) {
             path="/assets/repeaterCard.png";
             x=23;
             y=352;
             SidebarElement repeaterCard=new SidebarElement(x,y,path,width,height,200);
-            repeaterCard.makeImage(pane);
-            repeaterCard.timeoutTime=10000;
-            allElements.put(5,repeaterCard);
-            repeaterCard.img.setOnMouseClicked(e->{
-                if (!repeaterCard.isDisabled){
-                    setCardSelected(5);
-                    Shovel.getInstance().disable();
-                }
-            });
+            setSidebarElements(allElements, repeaterCard, pane, 10000,5);
         }
         if (level>=5) {
             path="/assets/jalapenoCard.png";
             x=24;
             y=420;
             SidebarElement jalapenoCard=new SidebarElement(x,y,path,width,height,125);
-            jalapenoCard.makeImage(pane);
-            jalapenoCard.timeoutTime=12000;
-            allElements.put(6,jalapenoCard);
-            jalapenoCard.img.setOnMouseClicked(e->{
-                if (!jalapenoCard.isDisabled) {
-                    setCardSelected(6);
-                    Shovel.getInstance().disable();
-                }
-            });
+            setSidebarElements(allElements, jalapenoCard, pane, 12000,6);
 
         }
         String border_path = SidebarElement.class.getResource("/assets/selectedCardBorder.png").toString();
