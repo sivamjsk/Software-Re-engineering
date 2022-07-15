@@ -268,7 +268,7 @@ public class GamePlayController {
         sunTimeline = sunDropper;
         animationTimelines.add(sunDropper);
     }
-    public void redevent(Random rand, ArrayList<Integer> zombieList){
+    public void ZombieSpawner(Random rand, ArrayList<Integer> zombieList){
         int lane;
         int laneNumber = rand.nextInt(5);
         if(laneNumber==0)
@@ -314,7 +314,7 @@ public class GamePlayController {
     }
     public void zombieSpawner1(Random rand, double t){
         Timeline spawnZombie1 = new Timeline(new KeyFrame(Duration.seconds(t), event -> {
-            redevent(rand, zombieList1);
+            ZombieSpawner(rand, zombieList1);
         }));
 
         spawnZombie1.setCycleCount(Timeline.INDEFINITE);
@@ -325,7 +325,7 @@ public class GamePlayController {
 
     public void zombieSpawner2(Random rand, double t){
         Timeline spawnZombie2 = new Timeline(new KeyFrame(Duration.seconds(t), event -> {
-            redevent(rand, zombieList2);
+            ZombieSpawner(rand, zombieList2);
         }));
 
         spawnZombie2.setCycleCount(Timeline.INDEFINITE);
@@ -394,7 +394,7 @@ public class GamePlayController {
                     placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
                     updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
                     SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
-                    
+
                 }
                 //else System.out.println("Cant place more than one plant on cell");
 
