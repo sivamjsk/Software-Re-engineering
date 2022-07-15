@@ -6,15 +6,9 @@ import javafx.scene.layout.AnchorPane;
 
 
 /**
- * The Class viewManager.
+ * The Class ViewManager.
  */
-public class viewManager {
-
-    /** The Constant height. */
-    private static final int height = 600;
-    
-    /** The Constant width. */
-    private static final int width = 1024;
+public class ViewManager{
     
     /** The main pane. */
     private AnchorPane mainPane;
@@ -28,10 +22,11 @@ public class viewManager {
     /**
      * Instantiates a new view manager.
      */
-    public viewManager()
+    public ViewManager()
     {
+
         mainPane = new AnchorPane();
-        mainScene = new Scene(mainPane, width, height);
+        mainScene = new Scene(mainPane, 1024, 600);
         mainStage = new Stage();
         mainStage.setScene(mainScene);
     }

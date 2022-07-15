@@ -159,8 +159,8 @@ public class SidebarElement extends GameElements{
             });
 
         }
-        String border_path = SidebarElement.class.getResource("/assets/selectedCardBorder.png").toString();
-        selectedBorder = new ImageView(new Image(border_path,110.0,72.0,false,false));
+        String borderPath = SidebarElement.class.getResource("/assets/selectedCardBorder.png").toString();
+        selectedBorder = new ImageView(new Image(borderPath,110.0,72.0,false,false));
         pane.getChildren().add(selectedBorder);
         selectedBorder.setVisible(false);
         selectedBorder.setDisable(true);

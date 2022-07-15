@@ -36,7 +36,7 @@ public class GamePlayController {
 
     /** The Game play root. */
     @FXML
-    private AnchorPane GamePlayRoot;
+    private AnchorPane gamePlayRoot;
     
     /** The lawn image. */
     @FXML
@@ -57,7 +57,7 @@ public class GamePlayController {
     
     /** The lawn grid. */
     @FXML
-    private GridPane lawn_grid;
+    private GridPane lawnGrid;
     /** The sun count. */
     private static int sunCount;
     
@@ -180,10 +180,10 @@ public class GamePlayController {
         startAnimations(rand);
 
         shovel=Shovel.getInstance();
-        shovel.makeImage(GamePlayRoot);
+        shovel.makeImage(gamePlayRoot);
         sunCountDisplay.setText(String.valueOf(sunCount));
         this.d=d;
-        SidebarElement.getSideBarElements(levelNumber, GamePlayRoot);
+        SidebarElement.getSideBarElements(levelNumber, gamePlayRoot);
 
         gameProgress();
         if(LevelMenuController.status)
@@ -194,8 +194,8 @@ public class GamePlayController {
         }
         else
         {
-            String lawn_path = getClass().getResource("/assets/lawn_night.png").toString();
-            Image lawn = new Image(lawn_path, 1024, 600, false, false);
+            String lawnPath = getClass().getResource("/assets/lawn_night.png").toString();
+            Image lawn = new Image(lawnPath, 1024, 600, false, false);
             lawnImage.setImage(lawn);
             zombieSpawner1(rand, 25);
             zombieSpawner2(rand, 40);
@@ -213,15 +213,14 @@ public class GamePlayController {
             Iterator<Plant> i = allPlants.iterator();
             while (i.hasNext()) {
                 Plant p = i.next();
-                p.makeImage(lawn_grid);
-                p.attack(GamePlayRoot);
+                p.makeImage(lawnGrid);
             }
         }
         synchronized (allMowers) {
             Iterator<LawnMower> i = allMowers.iterator();
             while (i.hasNext()) {
                 LawnMower l = i.next();
-                l.makeImage(GamePlayRoot);
+                l.makeImage(gamePlayRoot);
                 l.checkZombie();
             }
         }
@@ -231,7 +230,7 @@ public class GamePlayController {
             while(i.hasNext())
             {
                 Zombie z = i.next();
-                z.makeImage(GamePlayRoot);
+                z.makeImage(gamePlayRoot);
                 z.moveZombie();
             }
         }
@@ -298,7 +297,7 @@ public class GamePlayController {
         Stage stage = new Stage();
         stage.setScene(new Scene(gameMenu));
         GameMenuController controller = fxmlLoader.<GameMenuController>getController();
-        controller.initData(GamePlayRoot, levelNumber,d,sunCount,allPlants, allZombies, allMowers, timeElapsed, l.getZombieList1(), l.getZombieList2());
+        controller.initData(gamePlayRoot, levelNumber,d,sunCount,allPlants, allZombies, allMowers, timeElapsed, l.getZombieList1(), l.getZombieList2());
         stage.show();
     }
 
@@ -363,7 +362,7 @@ public class GamePlayController {
                 int sunPosition = rand.nextInt(850);
                 sunPosition += 100;
                 Sun s = new Sun(sunPosition, 0, true);
-                s.makeImage(GamePlayRoot);
+                s.makeImage(gamePlayRoot);
                 s.dropSun();
             }
         }));
@@ -396,19 +395,19 @@ public class GamePlayController {
             try
             {
                 if(zombieList1.get(0)==0) {
-                    Level.spawnNormalZombie(GamePlayRoot, lane, laneNumber);
+                    Level.spawnNormalZombie(gamePlayRoot, lane, laneNumber);
                     zombieList1.remove(0);
                     updateSpawnedZombies();
                 }
                 else if(zombieList1.get(0)==1)
                 {
-                    Level.spawnConeZombie(GamePlayRoot, lane, laneNumber);
+                    Level.spawnConeZombie(gamePlayRoot, lane, laneNumber);
                     zombieList1.remove(0);
                     updateSpawnedZombies();
                 }
                 else if(zombieList1.get(0)==2)
                 {
-                    Level.spawnBucketZombie(GamePlayRoot, lane, laneNumber);
+                    Level.spawnBucketZombie(gamePlayRoot, lane, laneNumber);
                     zombieList1.remove(0);
                     updateSpawnedZombies();
                 }
@@ -448,19 +447,19 @@ public class GamePlayController {
             try
             {
                 if(zombieList2.get(0)==0) {
-                    Level.spawnNormalZombie(GamePlayRoot, lane, laneNumber);
+                    Level.spawnNormalZombie(gamePlayRoot, lane, laneNumber);
                     zombieList2.remove(0);
                     updateSpawnedZombies();
                 }
                 else if(zombieList2.get(0)==1)
                 {
-                    Level.spawnConeZombie(GamePlayRoot, lane, laneNumber);
+                    Level.spawnConeZombie(gamePlayRoot, lane, laneNumber);
                     zombieList2.remove(0);
                     updateSpawnedZombies();
                 }
                 else if(zombieList2.get(0)==2)
                 {
-                    Level.spawnBucketZombie(GamePlayRoot, lane, laneNumber);
+                    Level.spawnBucketZombie(gamePlayRoot, lane, laneNumber);
                     zombieList2.remove(0);
                     updateSpawnedZombies();
                 }
@@ -503,8 +502,8 @@ public class GamePlayController {
     @FXML
     void getGridPosition(MouseEvent event) throws IOException {
         Node source = (Node) event.getSource();
-        Integer colIndex = lawn_grid.getColumnIndex(source);
-        Integer rowIndex = lawn_grid.getRowIndex(source);
+        Integer colIndex = lawnGrid.getColumnIndex(source);
+        Integer rowIndex = lawnGrid.getRowIndex(source);
         if (!shovel.isIsDisabled()) {
             shovel.disable();
             if (colIndex != null && rowIndex != null) {
@@ -546,7 +545,7 @@ public class GamePlayController {
                     if (SidebarElement.getElement(SidebarElement.getCardSelected()).getCost() <= sunCount) {
                         placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
                         updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
-                        SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
+                        SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(gamePlayRoot);
                     }
                 }
 
@@ -575,38 +574,33 @@ public class GamePlayController {
             case 1:
                 p=new Sunflower(x, y,row,col);
                 allPlants.add(p);
-                p.makeImage(lawn_grid);
-                p.attack(GamePlayRoot);
+                p.makeImage(lawnGrid);
                 break;
             case 2:
                 p=new PeaShooter(x, y,row,col);
                 allPlants.add(p);
-                p.makeImage(lawn_grid);
-                p.attack(GamePlayRoot);
+                p.makeImage(lawnGrid);
                 break;
             case 3:
                 p=new Wallnut(x, y,row,col);
                 allPlants.add(p);
-                p.makeImage(lawn_grid);
-                p.attack(GamePlayRoot);
+                p.makeImage(lawnGrid);
                 break;
             case 4:
                 p=new CherryBomb(x, y,row,col);
                 allPlants.add(p);
-                p.makeImage(lawn_grid);
-                p.attack(GamePlayRoot);
+                p.makeImage(lawnGrid);
                 break;
             case 5:
                 p=new Repeater(x, y,row,col);
                 allPlants.add(p);
-                p.makeImage(lawn_grid);
-                p.attack(GamePlayRoot);
+                p.makeImage(lawnGrid);
+
                 break;
             case 6:
                 p=new Jalapeno(x, y,row,col);
                 allPlants.add(p);
-                p.makeImage(lawn_grid);
-                p.attack(GamePlayRoot);
+                p.makeImage(lawnGrid);
                 break;
             default:
         }
@@ -633,7 +627,7 @@ public class GamePlayController {
         AnchorPane pane=fxmlLoader.load();
         EndGameController controller = fxmlLoader.<EndGameController>getController();
         controller.initData(levelNumber, false,d);
-        GamePlayRoot.getChildren().setAll(pane);
+        gamePlayRoot.getChildren().setAll(pane);
 
     }
     
@@ -647,7 +641,7 @@ public class GamePlayController {
         AnchorPane pane=fxmlLoader.load();
         EndGameController controller = fxmlLoader.<EndGameController>getController();
         controller.initData(levelNumber, true,d);
-        GamePlayRoot.getChildren().setAll(pane);
+        gamePlayRoot.getChildren().setAll(pane);
 
     }
 }
