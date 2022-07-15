@@ -17,7 +17,6 @@ public abstract class Plant extends GameElements{
     String path;
 
 /** The hp. */
-//    protected GridPane lawn;
     protected int hp;
     
     /** The col. */
@@ -41,7 +40,6 @@ public abstract class Plant extends GameElements{
     public Plant(int x, int y, String path, int hp,int width,int height,int col,int row){
         super(x,y,path,width,height);
         this.hp=hp;
-//        this.lawn=lawn;
         this.col=col;
         this.row=row;
 

@@ -31,7 +31,6 @@ public class MainPageController implements Initializable {
             Main.serialize();
         }
         catch(IOException e){
-            //System.out.println("Could not save the progress :(");
         }
         System.exit(0);
     }
@@ -42,9 +41,10 @@ public class MainPageController implements Initializable {
      * @param url the url
      * @param rb the rb
      */
+    /** To unlock all the 5 levels uncomment this line*/
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        //To unlock all the 5 levels uncomment this line
+
         Main.getDatabase().setMaxLevel(5);
     }
 

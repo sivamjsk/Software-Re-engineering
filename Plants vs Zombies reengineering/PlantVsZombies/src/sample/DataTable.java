@@ -70,7 +70,6 @@ public class DataTable implements Serializable {
  *
  * @param levelNumber the level number
  */
-//    private String filename;
     public DataTable(int levelNumber){
         id++;
         this.gameId=id;
@@ -126,7 +125,6 @@ public class DataTable implements Serializable {
             Main.serialize();
         }
         catch (IOException e){
-            //System.out.println("Cant close stream");
         }
     }
 
@@ -190,7 +188,6 @@ public class DataTable implements Serializable {
      * @return the time elapsed
      */
     public double getTimeElapsed() {
-        //System.out.println(this.timeElapsed);
         return this.timeElapsed;
     }
 

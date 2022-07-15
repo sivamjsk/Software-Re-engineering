@@ -22,7 +22,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Iterator;
 
 
 /**
@@ -41,7 +45,7 @@ public class GamePlayController {
     /** The sun count label. */
     @FXML
     private Label sunCountLabel;
-    
+
     
     /** The progress bar. */
     @FXML
@@ -54,37 +58,35 @@ public class GamePlayController {
     /** The lawn grid. */
     @FXML
     private GridPane lawn_grid;
-    //public static ArrayList<Plant> allPlants;
     /** The sun count. */
-    //public static ArrayList<LawnMower> allMowers;
     private static int sunCount;
     
     /** The Constant LANE1. */
-    public static final int LANE1=50;
+    static final int LANE1=50;
     
     /** The Constant LANE2. */
-    public static final int LANE2=150;
+    static final int LANE2=150;
     
     /** The Constant LANE3. */
-    public static final int LANE3=250;
+    static final int LANE3=250;
     
     /** The Constant LANE4. */
-    public static final int LANE4=350;
+    static final int LANE4=350;
     
     /** The Constant LANE5. */
-    public static final int LANE5=450;
+    static final int LANE5=450;
     
     /** The game status. */
-    public static boolean gameStatus;
+    static boolean gameStatus;
     
     /** The sun timeline. */
-    public static Timeline sunTimeline;
+    static Timeline sunTimeline;
     
     /** The sp Z 1. */
-    public static Timeline spZ1;
+    static Timeline spZ1;
     
     /** The sp Z 2. */
-    public static Timeline spZ2;
+    static Timeline spZ2;
     
     /** The sun count display. */
     private static Label sunCountDisplay;
@@ -96,26 +98,25 @@ public class GamePlayController {
     private static Level l;
     
     /** The all zombies. */
-    public static List allZombies;
+    static List allZombies;
     
     /** The all plants. */
-    public static List allPlants;
+    static List allPlants;
     
     /** The all mowers. */
-    public static List allMowers;
+    static List allMowers;
     
     /** The zombie list 1. */
-    public static ArrayList<Integer> zombieList1;
+    static ArrayList<Integer> zombieList1;
     
     /** The zombie list 2. */
-    public static ArrayList<Integer> zombieList2;
+    static ArrayList<Integer> zombieList2;
     
     /** The d. */
-    //public static ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
     private static DataTable d;
     
     /** The won game. */
-    public static int wonGame = 0;
+    static int wonGame = 0;
     
     /** The spawned zombies. */
     private volatile int spawnedZombies = 0;
@@ -124,10 +125,10 @@ public class GamePlayController {
     public static double numZombiesKilled = 0;
     
     /** The animation timelines. */
-    public static ArrayList<Timeline> animationTimelines;
+    static ArrayList<Timeline> animationTimelines;
     
     /** The theme. */
-    public static String theme = "day";
+    static String theme = "day";
     
     /** The shovel. */
     private Shovel shovel;
@@ -250,12 +251,10 @@ public class GamePlayController {
                     timeElapsed = ( numZombiesKilled / l.getTotalZombies());
                     progressBar.setProgress(timeElapsed);
                     if (wonGame == (-1)) {
-                        //System.out.println("LostGame :(");
                         numZombiesKilled = 0;
                         endAnimations();
                         gameLost();
                     } else if (wonGame == 0 && allZombies.size() == 0 && l.getTotalZombies() == spawnedZombies) {
-                        //System.out.println("GAME WON!!");
                         numZombiesKilled = 0;
                         endAnimations();
                         gameWon();
@@ -509,7 +508,6 @@ public class GamePlayController {
         if (!shovel.isIsDisabled()) {
             shovel.disable();
             if (colIndex != null && rowIndex != null) {
-                //System.out.println("shovelling"+colIndex+" "+rowIndex);
                 Media shove = new Media(getClass().getResource("/assets/sounds/plant.wav").toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(shove);
                 mediaPlayer.setAutoPlay(true);
@@ -518,12 +516,10 @@ public class GamePlayController {
                     Iterator<Plant> i = allPlants.iterator();
                     while (i.hasNext()) {
                         Plant p = i.next();
-                        //System.out.println("plant"+p.col+" "+p.row);
                         if (p.col == colIndex && p.row == rowIndex) {
                             p.img.setVisible(false);
                             p.img.setDisable(true);
                             allPlants.remove(p);
-                            //System.out.println(p.getClass());
                             p.setHp(0);
                             ((Shooter)p).checkHp();
                             ((Sunflower)p).checkHp();
@@ -552,9 +548,7 @@ public class GamePlayController {
                         updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
                         SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
                     }
-                    //else System.out.println("Not enough sun score");
                 }
-                //else System.out.println("Cant place more than one plant on cell");
 
             }
             SidebarElement.setCardSelectedToNull();
@@ -615,7 +609,6 @@ public class GamePlayController {
                 p.attack(GamePlayRoot);
                 break;
             default:
-                //System.out.println("No case match" + val);
         }
     }
 

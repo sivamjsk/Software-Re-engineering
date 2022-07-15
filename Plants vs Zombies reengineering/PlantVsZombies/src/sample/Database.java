@@ -15,9 +15,6 @@ public class Database implements Serializable {
     
     /** The max level. */
     private int maxLevel;
-    
-    /** The d. */
-//    private static Database d;
 
     /** The database files. */
     private ArrayList<DataTable> databaseFiles;
@@ -70,9 +67,6 @@ public class Database implements Serializable {
     /**
      * Delete all progress.
      */
-//    public static void deleteAllProgress() {
-//        d = new Database();
-//    }
 
     /**
      * Gets the database files.

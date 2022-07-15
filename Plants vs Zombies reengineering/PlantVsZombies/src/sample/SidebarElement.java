@@ -43,7 +43,6 @@ public class SidebarElement extends GameElements{
     public SidebarElement(int x,int y,String path, int width,int height,int cost){
         super(x,y,path,width,height);
         this.cost=cost;
-//        super.makeImage();
     }
 
     /**

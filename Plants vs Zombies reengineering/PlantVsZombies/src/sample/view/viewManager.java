@@ -34,7 +34,6 @@ public class viewManager {
         mainScene = new Scene(mainPane, width, height);
         mainStage = new Stage();
         mainStage.setScene(mainScene);
-//        createButtons();
     }
 
     /**
@@ -46,10 +45,4 @@ public class viewManager {
     {
         return mainStage;
     }
-
-//    private void createButtons()
-//    {
-//        Button button = new Button("Click me!");
-//        mainPane.getChildren().add(button);
-//    }
 }

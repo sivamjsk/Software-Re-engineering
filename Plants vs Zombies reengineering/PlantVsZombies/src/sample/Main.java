@@ -75,7 +75,6 @@ public class Main extends Application {
         }
         finally {
             out.close();
-            //System.out.println("Saved!");
             System.exit(0);
         }
     }
@@ -99,7 +98,7 @@ public class Main extends Application {
         }
         catch (NullPointerException e) {
             currentd=new Database();
-            //System.out.println("This user does not exist in the database");
+
         }
     }
 

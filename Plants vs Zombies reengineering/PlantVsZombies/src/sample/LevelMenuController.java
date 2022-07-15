@@ -73,9 +73,6 @@ public class LevelMenuController {
      * Initialize.
      */
     public void initialize(){
-//        nightTheme=new ImageView(new Image("file:src/sample/assets/menu_dark_mode.png"));
-//        levelRoot.getChildren().add(nightTheme);
-//        nightTheme.setDisable(true);
         if(status==true)
         {
             nightTheme.setVisible(false);

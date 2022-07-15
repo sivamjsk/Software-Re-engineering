@@ -36,7 +36,6 @@ public class Shooter extends Plant {
     public Shooter(int x, int y, String path, int hp, int width, int height,int row,int col){
         super(x,y,path,hp,width,height,row,col);
         this.lane = col;
-//        attack();
     }
 
     /**

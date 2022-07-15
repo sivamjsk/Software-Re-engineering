@@ -42,7 +42,6 @@ public abstract class GameElements implements Serializable{
         this.x=x_;
         this.y=y_;
         this.path=getClass().getResource(path).toString();
-//        this.pane=p;
         this.width=width;
         this.height=height;
 

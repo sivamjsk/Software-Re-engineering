@@ -110,7 +110,6 @@ public abstract class Zombie extends GameElements {
                     MediaPlayer mediaPlayer = new MediaPlayer(yuck);
                     mediaPlayer.setAutoPlay(true);
                     mediaPlayer.play();
-                    //System.out.println("removed");
                     break;
                 }
             }
@@ -190,7 +189,6 @@ public abstract class Zombie extends GameElements {
             }
             catch(java.util.ConcurrentModificationException e)
             {
-                //System.out.println("killed plant");
             }
             checkReachedHouse();
         }

@@ -71,7 +71,7 @@ public class CherryBomb extends Plant{
             img.setVisible(false);
             img.setDisable(true);
             powie.setVisible(true);
-            //System.out.println("attacking");
+
             synchronized (GamePlayController.allZombies)
             {
                 Iterator<Zombie> i = GamePlayController.allZombies.iterator();
