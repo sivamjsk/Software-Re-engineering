@@ -389,13 +389,12 @@ public class GamePlayController {
                         }
                     }
                 }
-                if (flag) {
-                    if (SidebarElement.getElement(SidebarElement.getCardSelected()).getCost() <= sunCount) {
-                        placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
-                        updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
-                        SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
-                    }
-                    //else System.out.println("Not enough sun score");
+                if (flag && (SidebarElement.getElement(SidebarElement.getCardSelected()).getCost() <= sunCount) ) {
+
+                    placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
+                    updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
+                    SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
+                    
                 }
                 //else System.out.println("Cant place more than one plant on cell");
 
