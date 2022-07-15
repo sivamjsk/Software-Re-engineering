@@ -18,14 +18,14 @@ public class LevelMenuController {
 
     /** The night mode. */
     @FXML
-    public ImageView nightMode;
+    ImageView nightMode;
 
     /** The day mode. */
     @FXML
-    public ImageView dayMode;
+    ImageView dayMode;
 
     /** The status. */
-    public static boolean status = true;
+    static boolean status = true;
 
     /** The level root. */
     @FXML

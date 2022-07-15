@@ -122,7 +122,7 @@ public class GamePlayController {
     private volatile int spawnedZombies = 0;
     
     /** The num zombies killed. */
-    public static double numZombiesKilled = 0;
+    static double numZombiesKilled = 0;
     
     /** The animation timelines. */
     static ArrayList<Timeline> animationTimelines;

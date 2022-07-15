@@ -37,7 +37,7 @@ public class GameMenuController {
     private DataTable data;
     
     /** The all plants. */
-    public static List<Plant> allPlants;
+    static List<Plant> allPlants;
     
     /** The all mowers. */
     private static List<LawnMower> allMowers;

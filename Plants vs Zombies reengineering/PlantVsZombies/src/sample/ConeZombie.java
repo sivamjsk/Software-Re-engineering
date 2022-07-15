@@ -43,7 +43,7 @@ public class ConeZombie extends Zombie {
                     {
                         foundPlant=1;
 
-                        if(reachedPlant==false)
+                        if(!reachedPlant)
                         {
                             reachedPlant = true;
                             isEating = true;

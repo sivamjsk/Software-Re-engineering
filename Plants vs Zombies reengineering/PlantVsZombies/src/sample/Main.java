@@ -22,7 +22,7 @@ import java.io.FileOutputStream;
 public class Main extends Application {
     
     /** The media player. */
-    public static MediaPlayer mediaPlayer;
+    static MediaPlayer mediaPlayer;
     
     /** The currentd. */
     private static Database currentd;
