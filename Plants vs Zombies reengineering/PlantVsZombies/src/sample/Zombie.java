@@ -224,85 +224,81 @@ public abstract class Zombie extends GameElements {
         mediaPlayer.play();
     }
 
-    /**
-     * Eat plant.
-     */
-    public void innereatPlant(int n){
 
-        int foundPlant = 0;
-        synchronized (GamePlayController.allPlants)
+    public void IfApproachingPlant(Plant p){
+
+        if(reachedPlant==false)
         {
-            Iterator<Plant> i = GamePlayController.allPlants.iterator();
-            while(i.hasNext())
-            {
-                Plant p = i.next();
-                if(p.row == getLane())
-                {
-                    if (Math.abs(p.getX()-img.getX())<=n)
-                    {
-                        foundPlant=1;
-
-                        if(reachedPlant==false)
-                        {
-                            reachedPlant = true;
-                            isEating = true;
-                        }
-                        if(isEating)
-                        {
-                            Timeline chomp = new Timeline(new KeyFrame(Duration.millis(1000), e -> chompPlant()));
-                            chomp.setCycleCount(1000);
-                            chomp.play();
-                            this.dx = 0;
-                            this.chomping = chomp;
-                            GamePlayController.animationTimelines.add(chomp);
-                            isEating = false;
-                        }
-                        if(foundPlant==1)
-                        {
-                            this.dx = 0;
-                            p.setHp(p.getHp()-this.attackPower);
-                            if(p.getHp()<=0)
-                            {
-                                p.setHp(0);
-                                GamePlayController.allPlants.remove(p);
-                                p.img.setVisible(false);
-                                p.img.setDisable(true);
-                                this.dx = -1;
-                                this.reachedPlant = false;
-                                this.chomping.stop();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this.dx = -1;
-                        this.reachedPlant = false;
-                        if(this.chomping!=null)
-                        {
-                            this.chomping.stop();
-                        }
-                    }
-                }
-                else
-                {
-                    this.dx = -1;
-                }
-            }
+            reachedPlant = true;
+            isEating = true;
         }
-        if(foundPlant==0)
+        if(isEating)
         {
+            Timeline chomp = new Timeline(new KeyFrame(Duration.millis(1000), e -> chompPlant()));
+            chomp.setCycleCount(1000);
+            chomp.play();
+            this.dx = 0;
+            this.chomping = chomp;
+            GamePlayController.animationTimelines.add(chomp);
+            isEating = false;
+        }
+
+        this.dx = 0;
+        p.setHp(p.getHp()-this.attackPower);
+        if(p.getHp()<=0)
+        {
+            p.setHp(0);
+            GamePlayController.allPlants.remove(p);
+            p.img.setVisible(false);
+            p.img.setDisable(true);
             this.dx = -1;
-            if(this.chomping!=null)
-            {
-                this.chomping.stop();
-            }
-            this.reachedPlant=false;
+            this.reachedPlant = false;
+            this.chomping.stop();
         }
     }
 
+    public void IteratePlant(int n) {
+        int foundPlant=0;
+        synchronized (GamePlayController.allPlants) {
+            Iterator<Plant> i = GamePlayController.allPlants.iterator();
+            while (i.hasNext()) {
+                Plant p = i.next();
+                if (p.row != getLane()) {
+                    this.dx = -1;
+                    continue;
+                }
+                if ((p.row == getLane()) & (Math.abs(p.getX() - img.getX()) <= n)) {
+                    foundPlant = 1;
+                    IfApproachingPlant(p);
+                }
+                else if ((p.row == getLane()) & (Math.abs(p.getX() - img.getX()) > n)) {
+                    this.dx = -1;
+                    this.reachedPlant = false;
+                    if (this.chomping != null) {
+                        this.chomping.stop();
+                    }
+                }
+            }
+            if((foundPlant == 0)&(this.chomping != null)){
+                this.dx = -1;
+                this.chomping.stop();
+                this.reachedPlant = false;
+            }
+            else if((foundPlant == 0)&(this.chomping == null)){
+                this.dx = -1;
+                this.reachedPlant = false;
+            }
+        }
+    }
+
+
+    /**
+     * Eat plant.
+     */
     public void eatPlant()
     {
         int n=25;
-        innereatPlant(n);
+        IteratePlant(n);
+
     }
 }
