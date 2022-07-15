@@ -78,12 +78,10 @@ public class CherryBomb extends Plant{
                 Iterator<Zombie> i = GamePlayController.allZombies.iterator();
                 while(i.hasNext()) {
                     Zombie x = i.next();
-                    if(x.getX()<=(getX()+250) && x.getX()>=(getX()-150))
+                    if((x.getX()<=(getX()+250)) && (x.getX()>=(getX()-150) && (x.getY()<=(getY()+250)) && (x.getY()>=(getY()-150))))
                     {
-                        if(x.getY()<=(getY()+250) && x.getY()>=(getY()-150)) {
-                            roastedZombies.add(x);
-                            x.roastZombie();
-                        }
+                        roastedZombies.add(x);
+                        x.roastZombie();
                     }
                 }
             }

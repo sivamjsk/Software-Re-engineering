@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * The Class Almanac.
  */
-public class Almanac {
+public class Almanac extends GlowImage {
     
     /** The almanac pane. */
     @FXML
@@ -123,34 +123,6 @@ public class Almanac {
         entry.setImage(new Image(getClass().getResource("/assets/almanac/con.png").toString()));
     }
 
-
-    /**
-     * Glow image.
-     *
-     * @param event the event
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    @FXML
-    void glowImage(MouseEvent event) throws IOException {
-        Glow glow=new Glow();
-        Node source = (Node) event.getSource();
-        source.setEffect(glow);
-        glow.setLevel(0.4);
-    }
-
-    /**
-     * Stop glowing.
-     *
-     * @param event the event
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    @FXML
-    void stopGlowing(MouseEvent event) throws IOException{
-        Node source= (Node) event.getSource();
-        Glow glow=(Glow) source.getEffect();
-        source.setEffect(glow);
-        glow.setLevel(0.0);
-    }
     
     /**
      * Load prev menu.
