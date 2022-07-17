@@ -32,6 +32,6 @@ public class ConeZombie extends Zombie {
     public void eatPlant()
     {
         int n=50;
-        innereatPlant(n);
+        IteratePlant(n);
     }
 }
