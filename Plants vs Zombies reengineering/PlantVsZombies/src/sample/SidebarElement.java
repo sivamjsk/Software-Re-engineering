@@ -55,7 +55,7 @@ public class SidebarElement extends GameElements{
         return this.cost;
     }
 
-    public static void setSidebarElements(HashMap allElements,SidebarElement element, Pane pane, int timeout, int cardOrder) {
+    public static void setSidebarElements(HashMap<Integer,SidebarElement> allElements,SidebarElement element, Pane pane, int timeout, int cardOrder) {
         element.makeImage(pane);
         element.timeoutTime = timeout;
         allElements.put(cardOrder, element);
@@ -173,8 +173,8 @@ public class SidebarElement extends GameElements{
      * @return the element
      */
     public static SidebarElement getElement(int x){
-        if (allElements.containsKey(x)) return allElements.get(x);
-        else return null;
+        if (allElements.containsKey(x)) { return allElements.get(x);}
+        else {return null;}
     }
 
     /**

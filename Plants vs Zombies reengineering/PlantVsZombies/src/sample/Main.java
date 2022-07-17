@@ -18,7 +18,7 @@ import java.net.URL;
 public class Main extends Application {
     
     /** The media player. */
-    public static MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer=null;
     
     /** The currentd. */
     private static Database currentd;
@@ -74,10 +74,12 @@ public class Main extends Application {
             out = new ObjectOutputStream (new FileOutputStream("database.txt"));
             out.writeObject(currentd);
         }
+       
         finally {
-            out.close();
+        	if(out!=null) {
+        		out.close();}
             //System.out.println("Saved!");
-            System.exit(0);
+//            System.exit(0);
         }
     }
     

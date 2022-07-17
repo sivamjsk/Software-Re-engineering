@@ -37,8 +37,8 @@ public class Sun extends GameElements{
         super(x, y, "/assets/sun.png", 50, 50);
 //      super.makeImage();
 
-        if(fallingSun) timeouttime=14000;
-        else timeouttime=5000;
+        if(fallingSun) { timeouttime=14000;}
+        else { timeouttime=5000;}
         disappearAfterTime();
     }
     

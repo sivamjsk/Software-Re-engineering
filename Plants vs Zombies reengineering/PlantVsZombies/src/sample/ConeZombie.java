@@ -33,5 +33,6 @@ public class ConeZombie extends Zombie {
     {
         int n=50;
         IteratePlant(n);
+        innereatPlant(n);
     }
 }

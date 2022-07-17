@@ -66,24 +66,24 @@ public class GamePlayController {
     public static final int LANE3=250;
     public static final int LANE4=350;
     public static final int LANE5=450;
-    public static boolean gameStatus;
-    public static Timeline sunTimeline;
-    public static Timeline spZ1;
-    public static Timeline spZ2;
+    public static boolean gameStatus=false;
+    public static Timeline sunTimeline=null;
+    public static Timeline spZ1=null;
+    public static Timeline spZ2=null;
     private static Label sunCountDisplay;
     private static double timeElapsed;
     private static Level l;
-    public static List allZombies;
-    public static List allPlants;
-    public static List allMowers;
-    public static ArrayList<Integer> zombieList1;
-    public static ArrayList<Integer> zombieList2;
+    public static ArrayList<Zombie> allZombies=null;
+    public static ArrayList<Plant> allPlants=null;
+    public static ArrayList<LawnMower> allMowers=null;
+    public static ArrayList<Integer> zombieList1=null;
+    public static ArrayList<Integer> zombieList2=null;
     //public static ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
     private static DataTable d;
     public static int wonGame = 0;
     private volatile int spawnedZombies = 0;
     public static double numZombiesKilled = 0;
-    public static ArrayList<Timeline> animationTimelines;
+    public static ArrayList<Timeline> animationTimelines=null;
     public static String theme = "day";
     private Shovel shovel;
 
@@ -271,16 +271,17 @@ public class GamePlayController {
     public void ZombieSpawner(Random rand, ArrayList<Integer> zombieList){
         int lane;
         int laneNumber = rand.nextInt(5);
-        if(laneNumber==0)
+        if(laneNumber==0) {
             lane = LANE1;
-        else if(laneNumber==1)
-            lane = LANE2;
-        else if(laneNumber==2)
-            lane = LANE3;
-        else if(laneNumber==3)
-            lane = LANE4;
-        else
-            lane = LANE5;
+        }
+        else if(laneNumber==1) {
+            lane = LANE2; }
+        else if(laneNumber==2) {
+            lane = LANE3;}
+        else if(laneNumber==3) {
+            lane = LANE4;}
+        else {
+            lane = LANE5;}
 
         try
         {
@@ -304,10 +305,10 @@ public class GamePlayController {
         }
         catch(IndexOutOfBoundsException e)
         {
-            if (zombieList==zombieList1)
-                endZombieSpawner1();
-            else
-                endZombieSpawner2();
+            if(zombieList==zombieList1){
+                endZombieSpawner1(); }
+            else {
+                endZombieSpawner2();}
         }
 
 
