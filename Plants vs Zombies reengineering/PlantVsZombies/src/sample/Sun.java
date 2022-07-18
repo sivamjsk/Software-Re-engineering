@@ -50,7 +50,7 @@ public class Sun extends GameElements{
             try {
                 Thread.sleep(timeouttime);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             img.setVisible(false);
             img.setDisable(true);

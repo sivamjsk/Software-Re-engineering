@@ -91,7 +91,7 @@ public class Pea extends GameElements{
             Iterator<Zombie> i = GamePlayController.allZombies.iterator();
             while (i.hasNext()) {
                 Zombie z = i.next();
-                if(z.getLane() == lane && !flag && Math.abs(z.getX()-getX())<=3 && !flag)
+                if(z.getLane() == lane && !flag && Math.abs(z.getX()-getX())<=3 )
                 {
                     this.flag = true;
                     z.setHp(z.getHp()-1);

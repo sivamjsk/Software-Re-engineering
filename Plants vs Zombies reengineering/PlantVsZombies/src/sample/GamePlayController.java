@@ -111,8 +111,7 @@ public class GamePlayController {
         this.levelNumber = levelNumber;
         Level l = new Level(levelNumber);
         this.l = l;
-        zombieList1 = d.getZombieList1();
-        zombieList2 = d.getZombieList2();
+        zombieList1 = d.getZombieList1();zombieList2 = d.getZombieList2();
         allPlants = d.getAllPlants();
         allZombies = d.getAllZombie();
         allMowers=d.getAllLawnMowers();
@@ -121,29 +120,22 @@ public class GamePlayController {
         animationTimelines = new ArrayList<Timeline>();
         LevelMenuController.status = d.getStatus();
         startAnimations(rand);
-
         shovel=Shovel.getInstance();
         shovel.makeImage(GamePlayRoot);
         sunCountDisplay.setText(String.valueOf(sunCount));
         this.d=d;
         SidebarElement.getSideBarElements(levelNumber, GamePlayRoot);
-
         gameProgress();
-        if(LevelMenuController.status)
-        {
+        if(LevelMenuController.status){
             fallingSuns(rand);
             zombieSpawner1(rand, 15);
-            zombieSpawner2(rand, 30);
-        }
-        else
-        {
+            zombieSpawner2(rand, 30);}
+        else{
             String lawn_path = getClass().getResource("/assets/lawn_night.png").toString();
             Image lawn = new Image(lawn_path, 1024, 600, false, false);
             lawnImage.setImage(lawn);
             zombieSpawner1(rand, 25);
-            zombieSpawner2(rand, 40);
-        }
-    }
+            zombieSpawner2(rand, 40);}}
 
     public void startAnimations(Random rand)
     {
@@ -186,25 +178,22 @@ public class GamePlayController {
                     timeElapsed = ( numZombiesKilled / l.getTotalZombies());
                     progressBar.setProgress(timeElapsed);
                     if (wonGame == (-1)) {
-                        //System.out.println("LostGame :(");
                         numZombiesKilled = 0;
-                        endAnimations();
                         gameLost();
                     } else if (wonGame == 0 && allZombies.size() == 0 && l.getTotalZombies() == spawnedZombies) {
-                        //System.out.println("GAME WON!!");
                         numZombiesKilled = 0;
-                        endAnimations();
                         gameWon();
                     }
                     else if(progressBar.getProgress()>=1)
                     {
                         spZ1.stop();
                         spZ2.stop();
-                        endAnimations();
                         gameWon();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    endAnimations();
+                }
+                catch (IOException e) {
+                	e.getMessage();
                 }
             }
         }));
@@ -271,48 +260,34 @@ public class GamePlayController {
     public void ZombieSpawner(Random rand, ArrayList<Integer> zombieList){
         int lane;
         int laneNumber = rand.nextInt(5);
-        if(laneNumber==0) {
-            lane = LANE1;
-        }
-        else if(laneNumber==1) {
-            lane = LANE2; }
+        if(laneNumber==0) { 
+        	lane = LANE1;}
+        else if(laneNumber==1) { 
+        	lane = LANE2; }
         else if(laneNumber==2) {
-            lane = LANE3;}
-        else if(laneNumber==3) {
-            lane = LANE4;}
-        else {
-            lane = LANE5;}
-
-        try
-        {
+        	lane = LANE3;}
+        else if(laneNumber==3) { 
+        	lane = LANE4;}
+        else { 
+        	lane = LANE5;}
+        try {
             if(zombieList.get(0)==0) {
                 Level.spawnNormalZombie(GamePlayRoot, lane, laneNumber);
                 zombieList.remove(0);
-                updateSpawnedZombies();
-            }
-            else if(zombieList.get(0)==1)
-            {
+                updateSpawnedZombies(); }
+            else if(zombieList.get(0)==1) {
                 Level.spawnConeZombie(GamePlayRoot, lane, laneNumber);
                 zombieList.remove(0);
-                updateSpawnedZombies();
-            }
-            else if(zombieList.get(0)==2)
-            {
+                updateSpawnedZombies();  }
+            else if(zombieList.get(0)==2)  {
                 Level.spawnBucketZombie(GamePlayRoot, lane, laneNumber);
                 zombieList.remove(0);
-                updateSpawnedZombies();
-            }
+                updateSpawnedZombies();  } }
+        catch(IndexOutOfBoundsException e) {
+            if(zombieList==zombieList1){ endZombieSpawner1(); }
+            else { endZombieSpawner2();}
         }
-        catch(IndexOutOfBoundsException e)
-        {
-            if(zombieList==zombieList1){
-                endZombieSpawner1(); }
-            else {
-                endZombieSpawner2();}
-        }
-
-
-    }
+ }
     public void zombieSpawner1(Random rand, double t){
         Timeline spawnZombie1 = new Timeline(new KeyFrame(Duration.seconds(t), event -> {
             ZombieSpawner(rand, zombieList1);
@@ -353,7 +328,6 @@ public class GamePlayController {
         if (!shovel.isIsDisabled()) {
             shovel.disable();
             if (colIndex != null && rowIndex != null) {
-                //System.out.println("shovelling"+colIndex+" "+rowIndex);
                 Media shove = new Media(getClass().getResource("/assets/sounds/plant.wav").toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(shove);
                 mediaPlayer.setAutoPlay(true);
@@ -362,12 +336,10 @@ public class GamePlayController {
                     Iterator<Plant> i = allPlants.iterator();
                     while (i.hasNext()) {
                         Plant p = i.next();
-                        //System.out.println("plant"+p.col+" "+p.row);
                         if (p.col == colIndex && p.row == rowIndex) {
                             p.img.setVisible(false);
                             p.img.setDisable(true);
                             allPlants.remove(p);
-                            //System.out.println(p.getClass());
                             p.setHp(0);
                             ((Shooter)p).checkHp();
                             ((Sunflower)p).checkHp();
@@ -391,14 +363,10 @@ public class GamePlayController {
                     }
                 }
                 if (flag && (SidebarElement.getElement(SidebarElement.getCardSelected()).getCost() <= sunCount) ) {
-
-                    placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
+                	placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
                     updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
                     SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
-
                 }
-                //else System.out.println("Cant place more than one plant on cell");
-
             }
             SidebarElement.setCardSelectedToNull();
         }

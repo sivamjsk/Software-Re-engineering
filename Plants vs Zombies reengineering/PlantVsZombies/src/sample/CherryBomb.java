@@ -63,7 +63,7 @@ public class CherryBomb extends Plant{
             try {
                 Thread.sleep(1800);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             Media explode = new Media(getClass().getResource("/assets/sounds/cherrybomb.wav").toString());
             MediaPlayer mediaPlayer = new MediaPlayer(explode);
@@ -116,7 +116,7 @@ public class CherryBomb extends Plant{
             try {
                 Thread.sleep(1250);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             powie.setVisible(false);
         });

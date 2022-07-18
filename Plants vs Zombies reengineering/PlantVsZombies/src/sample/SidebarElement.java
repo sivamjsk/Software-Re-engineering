@@ -30,6 +30,9 @@ public class SidebarElement extends GameElements{
     /** The cost. */
     private final int cost;
     
+    private static int x;
+    private static int y;
+    
     /**
      * Instantiates a new sidebar element.
      *
@@ -78,29 +81,16 @@ public class SidebarElement extends GameElements{
 
     public static void getSideBarElements(int level,Pane pane){
         String path;
-        int x;
-        int y;
+//        int x=24;
+//        int y=79;
         int width=97;
         int height=58;
         allElements=new HashMap<Integer, SidebarElement>();
         path="file:assets/sunflowerCard.png";
-        x=24;
-        y=79;
         if(level>=1){
             path="/assets/sunflowerCard.png";
-            x=24;
-            y=79;
             SidebarElement sunflowerCard = new SidebarElement(x, y, path, width, height, 50);
-            setSidebarElements(allElements, sunflowerCard, pane, 5000,1);
-
-        }
-        if(level>=1){
-            path="/assets/peashooterCard.png";
-            x=22;
-            y=147;
-            SidebarElement peashooterCard=new SidebarElement(x,y,path,width,height,100);
-            setSidebarElements(allElements, peashooterCard, pane, 6000,2);
-        }
+            setSidebarElements(allElements, sunflowerCard, pane, 5000,1); }
         if (level>=2){
             path="/assets/wallnutCard.png";
             x=22;
@@ -121,14 +111,6 @@ public class SidebarElement extends GameElements{
             y=352;
             SidebarElement repeaterCard=new SidebarElement(x,y,path,width,height,200);
             setSidebarElements(allElements, repeaterCard, pane, 10000,5);
-        }
-        if (level>=5) {
-            path="/assets/jalapenoCard.png";
-            x=24;
-            y=420;
-            SidebarElement jalapenoCard=new SidebarElement(x,y,path,width,height,125);
-            setSidebarElements(allElements, jalapenoCard, pane, 12000,6);
-
         }
         String border_path = SidebarElement.class.getResource("/assets/selectedCardBorder.png").toString();
         selectedBorder = new ImageView(new Image(border_path,110.0,72.0,false,false));
@@ -192,7 +174,7 @@ public class SidebarElement extends GameElements{
             try {
                 Thread.sleep(this.timeoutTime);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             this.isDisabled=false;
             im.setVisible(false);

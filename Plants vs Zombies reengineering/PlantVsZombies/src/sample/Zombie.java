@@ -139,7 +139,7 @@ public abstract class Zombie extends GameElements {
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             img.setVisible(false);
             img.setDisable(true);
