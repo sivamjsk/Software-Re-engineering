@@ -35,7 +35,7 @@ public class GamePlayController_progress {
                         GamePlayController.spZ2.stop();
                         gameWon();
                     }
-                    GamePlayController.endAnimations();
+                    GamePlayController_animation.endAnimations();
                 } catch (IOException e) {
                     e.getMessage();
                 }
@@ -63,4 +63,6 @@ public class GamePlayController_progress {
         gamePlayController.getGamePlayRoot().getChildren().setAll(pane);
 
     }
+
+
 }
