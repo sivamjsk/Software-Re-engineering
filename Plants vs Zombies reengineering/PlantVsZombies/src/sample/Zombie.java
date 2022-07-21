@@ -265,58 +265,9 @@ public abstract class Zombie extends GameElements {
             Iterator<Plant> i = GamePlayController.allPlants.iterator();
             while (i.hasNext()) {
                 Plant p = i.next();
-<<<<<<< HEAD
-                if(p.row == getLane())
-                {
-                    if (Math.abs(p.getX()-img.getX())<=50)
-                    {
-                        foundPlant=1;
-
-                        if(!reachedPlant)
-                        {
-                            reachedPlant = true;
-                            isEating = true;
-                        }
-                        if(isEating)
-                        {
-                            Timeline chomp = new Timeline(new KeyFrame(Duration.millis(1000), e -> chompPlant()));
-                            chomp.setCycleCount(1000);
-                            chomp.play();
-                            this.dx = 0;
-                            this.chomping = chomp;
-                            GamePlayController.animationTimelines.add(chomp);
-                            isEating = false;
-                        }
-                        if(foundPlant==1)
-                        {
-                            this.dx = 0;
-                            p.setHp(p.getHp()-this.attackPower);
-                            if(p.getHp()<=0)
-                            {
-                                p.setHp(0);
-                                GamePlayController.allPlants.remove(p);
-                                p.img.setVisible(false);
-                                p.img.setDisable(true);
-                                this.dx = -1;
-                                this.reachedPlant = false;
-                                this.chomping.stop();
-                            }
-                        }
-                    }
-                    else
-                    {
-                        this.dx = -1;
-                        this.reachedPlant = false;
-                        if(this.chomping!=null)
-                        {
-                            this.chomping.stop();
-                        }
-                    }
-=======
                 if (p.row != getLane()) {
                     this.dx = -1;
                     continue;
->>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
                 }
                 if ((p.row == getLane()) && (Math.abs(p.getX() - img.getX()) <= n)) {
                     foundPlant = 1;

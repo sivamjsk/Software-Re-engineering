@@ -4,7 +4,7 @@ import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-
+import javafx.scene.layout.Pane;
 
 
 /**
@@ -77,6 +77,10 @@ public abstract class Plant extends GameElements{
             img.setVisible(false);
             img.setDisable(true);
         }
+    }
+
+    public void attack(Pane p){
+        System.out.println("Overriding method");
     }
 
     /**

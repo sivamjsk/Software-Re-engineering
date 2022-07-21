@@ -51,22 +51,6 @@ public class LawnMower extends GameElements{
                     Iterator<Zombie> i = GamePlayController.allZombies.iterator();
                     while (i.hasNext()) {
                         Zombie z;
-<<<<<<< HEAD
-                            z = i.next();
-                            if (z.getLane() == lane) {
-                                if (Math.abs(z.getX() - getX()) <= 30) {
-                                    if (!activated) {
-                                        activate();
-                                        z.setHp(0);
-                                        activated = true;
-                                        z.getZombieAnimation().stop();
-                                    } else {
-                                        z.setHp(0);
-                                        z.getZombieAnimation().stop();
-                                    }
-                                }
-                                GamePlayController.allMowers.remove(this);
-=======
                         z = i.next();
                         if (z.getLane() == lane) {
                             if ((Math.abs(z.getX() - getX()) <= 30) &&(activated == false))
@@ -75,7 +59,6 @@ public class LawnMower extends GameElements{
                                 z.setHp(0);
                                 activated = true;
                                 z.getZombieAnimation().stop();
->>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
                             }
                             else if ((Math.abs(z.getX() - getX()) <= 30) &&(activated == true))
                             {
