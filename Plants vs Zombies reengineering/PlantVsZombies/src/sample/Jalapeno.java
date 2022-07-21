@@ -64,7 +64,11 @@ public class Jalapeno extends Plant {
     @Override
     public void attack(Pane pane) {
         Thread t = new Thread(() -> {
-            Thread.sleep(1650);
+            try {
+                Thread.sleep(1650);
+            } catch (InterruptedException e) {
+                //e.printStackTrace();
+            }
             img.setVisible(false);
             img.setDisable(true);
             Media explode = new Media(getClass().getResource("/assets/sounds/jalapeno.wav").toString());
