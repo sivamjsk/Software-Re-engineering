@@ -73,9 +73,9 @@ public class GamePlayController {
     private static Label sunCountDisplay;
     private static double timeElapsed;
     private static Level l;
-    public static ArrayList<Zombie> allZombies=null;
-    public static ArrayList<Plant> allPlants=null;
-    public static ArrayList<LawnMower> allMowers=null;
+    public static List allZombies=null;
+    public static List allPlants=null;
+    public static List allMowers=null;
     public static ArrayList<Integer> zombieList1=null;
     public static ArrayList<Integer> zombieList2=null;
     //public static ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
