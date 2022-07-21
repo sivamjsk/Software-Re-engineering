@@ -30,6 +30,7 @@ public class ConeZombie extends Zombie {
     @Override
     public void eatPlant()
     {
+<<<<<<< HEAD
         int foundPlant = 0;
         synchronized (GamePlayController.allPlants)
         {
@@ -99,5 +100,9 @@ public class ConeZombie extends Zombie {
             }
             this.reachedPlant=false;
         }
+=======
+        int n=50;
+        innereatPlant(n);
+>>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
     }
 }

@@ -134,7 +134,7 @@ public abstract class Zombie extends GameElements {
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             img.setVisible(false);
             img.setDisable(true);
@@ -218,18 +218,54 @@ public abstract class Zombie extends GameElements {
         mediaPlayer.play();
     }
 
-    /**
-     * Eat plant.
-     */
-    public void eatPlant()
-    {
-        int foundPlant = 0;
-        synchronized (GamePlayController.allPlants)
+
+    public void IfApproachingPlant(Plant p){
+
+        if(reachedPlant==false)
         {
+            reachedPlant = true;
+            isEating = true;
+        }
+        if(isEating)
+        {
+            Timeline chomp = new Timeline(new KeyFrame(Duration.millis(1000), e -> chompPlant()));
+            chomp.setCycleCount(1000);
+            chomp.play();
+            this.dx = 0;
+            this.chomping = chomp;
+            GamePlayController.animationTimelines.add(chomp);
+            isEating = false;
+        }
+
+        this.dx = 0;
+        p.setHp(p.getHp()-this.attackPower);
+        if(p.getHp()<=0)
+        {
+            p.setHp(0);
+            GamePlayController.allPlants.remove(p);
+            p.img.setVisible(false);
+            p.img.setDisable(true);
+            this.dx = -1;
+            this.reachedPlant = false;
+            this.chomping.stop();
+        }
+    }
+
+    public void IfChompingStop()
+    {
+        if (this.chomping != null)
+        {
+            this.chomping.stop();
+        }
+    }
+
+    public void IteratePlant(int n) {
+        int foundPlant=0;
+        synchronized (GamePlayController.allPlants) {
             Iterator<Plant> i = GamePlayController.allPlants.iterator();
-            while(i.hasNext())
-            {
+            while (i.hasNext()) {
                 Plant p = i.next();
+<<<<<<< HEAD
                 if(p.row == getLane())
                 {
                     if (Math.abs(p.getX()-img.getX())<=50)
@@ -276,21 +312,38 @@ public abstract class Zombie extends GameElements {
                             this.chomping.stop();
                         }
                     }
-                }
-                else
-                {
+=======
+                if (p.row != getLane()) {
                     this.dx = -1;
+                    continue;
+>>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
+                }
+                if ((p.row == getLane()) && (Math.abs(p.getX() - img.getX()) <= n)) {
+                    foundPlant = 1;
+                    IfApproachingPlant(p);
+                }
+                else if ((p.row == getLane()) && (Math.abs(p.getX() - img.getX()) > n)) {
+                    this.dx = -1;
+                    this.reachedPlant = false;
+                    IfChompingStop();
                 }
             }
-        }
-        if(foundPlant==0)
-        {
-            this.dx = -1;
-            if(this.chomping!=null)
-            {
-                this.chomping.stop();
+            if (foundPlant == 0) {
+                this.dx = -1;
+                IfChompingStop();
+                this.reachedPlant = false;
             }
-            this.reachedPlant=false;
         }
+    }
+
+
+    /**
+     * Eat plant.
+     */
+    public void eatPlant()
+    {
+        int n=25;
+        IteratePlant(n);
+
     }
 }

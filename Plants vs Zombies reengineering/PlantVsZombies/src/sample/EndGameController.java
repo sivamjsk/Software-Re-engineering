@@ -93,13 +93,15 @@ public class EndGameController {
     @FXML
     public void initData(int levelNumber, boolean gameWin,DataTable d){
         Main.getDatabase().removeData(d);
+<<<<<<< HEAD
         if (!gameWin){
             zombiesAteYourBrains.setVisible(true);
         }
+=======
+        if (gameWin==false){ zombiesAteYourBrains.setVisible(true); }
+>>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
         else{
-            if(levelNumber==5){
-                youAteZombiesBrains.setVisible(true);
-            }
+            if(levelNumber==5){ youAteZombiesBrains.setVisible(true); }
             else{
                 Main.getDatabase().setMaxLevel(levelNumber+1);
                 plantName.setVisible(true);
@@ -123,10 +125,6 @@ public class EndGameController {
                     plantName.setText("Jalapeno");
                     plantImage.setImage(new Image(getClass().getResource("/assets/L5.png").toString()));
                 }
-            }
-
-        }
-
-    }
+            } } }
 
 }

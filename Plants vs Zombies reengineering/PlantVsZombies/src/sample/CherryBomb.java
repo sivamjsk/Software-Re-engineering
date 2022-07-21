@@ -62,7 +62,7 @@ public class CherryBomb extends Plant{
             try {
                 Thread.sleep(1800);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             Media explode = new Media(getClass().getResource("/assets/sounds/cherrybomb.wav").toString());
             MediaPlayer mediaPlayer = new MediaPlayer(explode);
@@ -77,12 +77,10 @@ public class CherryBomb extends Plant{
                 Iterator<Zombie> i = GamePlayController.allZombies.iterator();
                 while(i.hasNext()) {
                     Zombie x = i.next();
-                    if(x.getX()<=(getX()+250) && x.getX()>=(getX()-150))
+                    if((x.getX()<=(getX()+250)) && (x.getX()>=(getX()-150) && (x.getY()<=(getY()+250)) && (x.getY()>=(getY()-150))))
                     {
-                        if(x.getY()<=(getY()+250) && x.getY()>=(getY()-150)) {
-                            roastedZombies.add(x);
-                            x.roastZombie();
-                        }
+                        roastedZombies.add(x);
+                        x.roastZombie();
                     }
                 }
             }
@@ -117,7 +115,7 @@ public class CherryBomb extends Plant{
             try {
                 Thread.sleep(1250);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+            	e.getMessage();
             }
             powie.setVisible(false);
         });

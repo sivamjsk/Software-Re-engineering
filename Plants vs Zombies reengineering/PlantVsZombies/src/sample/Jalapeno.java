@@ -61,11 +61,15 @@ public class Jalapeno extends Plant {
     @Override
     public void attack(Pane pane) {
         Thread t = new Thread(() -> {
+<<<<<<< HEAD
             try {
                 Thread.sleep(1650);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+=======
+            Thread.sleep(1650);
+>>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
             img.setVisible(false);
             img.setDisable(true);
             Media explode = new Media(getClass().getResource("/assets/sounds/jalapeno.wav").toString());
@@ -80,10 +84,8 @@ public class Jalapeno extends Plant {
                 Iterator<Zombie> i = GamePlayController.allZombies.iterator();
                 while(i.hasNext()) {
                     Zombie x = i.next();
-                    if(row == x.getLane())
-                    {
-                        x.roastZombie();
-                    }
+                    if(row == x.getLane()){
+                        x.roastZombie(); }
                 }
             }
             for(int j = 0; j<GamePlayController.allPlants.size(); j++)
@@ -116,7 +118,7 @@ public class Jalapeno extends Plant {
             try {
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                e.getMessage();
             }
             for(int i=0;i<9;i++) {
                 fireViews[i].setVisible(false);

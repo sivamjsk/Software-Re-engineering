@@ -22,7 +22,11 @@ import java.io.FileOutputStream;
 public class Main extends Application {
     
     /** The media player. */
+<<<<<<< HEAD
     static MediaPlayer mediaPlayer;
+=======
+    public static MediaPlayer mediaPlayer=null;
+>>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
     
     /** The currentd. */
     private static Database currentd;
@@ -78,9 +82,17 @@ public class Main extends Application {
             out = new ObjectOutputStream (new FileOutputStream("database.txt"));
             out.writeObject(currentd);
         }
+       
         finally {
+<<<<<<< HEAD
             out.close();
             System.exit(0);
+=======
+        	if(out!=null) {
+        		out.close();}
+            //System.out.println("Saved!");
+//            System.exit(0);
+>>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
         }
     }
     
@@ -101,9 +113,18 @@ public class Main extends Application {
         catch (FileNotFoundException e){
             currentd=new Database();
         }
+<<<<<<< HEAD
         catch (NullPointerException e) {
             currentd=new Database();
 
+=======
+//        catch (NullPointerException e) {
+//            currentd=new Database();
+//            //System.out.println("This user does not exist in the database");
+//        }
+        if(in==null) {
+        	currentd=new Database();
+>>>>>>> e907ad644662abcf48daaf1b27007cedfb95dbdf
         }
     }
 

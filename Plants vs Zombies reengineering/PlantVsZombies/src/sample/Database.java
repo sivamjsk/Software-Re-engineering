@@ -43,7 +43,7 @@ public class Database implements Serializable {
      * @param maxLevel the new max level
      */
     public void setMaxLevel(int maxLevel) {
-        if (this.maxLevel < maxLevel) this.maxLevel = maxLevel;
+        if (this.maxLevel < maxLevel) { this.maxLevel = maxLevel;}
     }
 
     /**
@@ -61,7 +61,8 @@ public class Database implements Serializable {
      * @param d the d
      */
     public void removeData(DataTable d) {
-        if (databaseFiles.contains(d)) databaseFiles.remove(d);
+//        if (databaseFiles.contains(d)) { databaseFiles.remove(d);}
+    	databaseFiles.remove(d);
     }
 
     /**

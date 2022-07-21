@@ -10,6 +10,7 @@
     <orderEntry type="library" name="javafx-11" level="application" />
     <orderEntry type="library" name="javafx-swt" level="application" />
     <orderEntry type="library" exported="" name="openjfx-11.0.2_osx-x64_bin-sdk" level="project" />
+    <orderEntry type="library" name="javafx" level="project" />
     <orderEntry type="module" module-name="javafx.media" />
     <orderEntry type="module" module-name="javafx.fxml" />
     <orderEntry type="module" module-name="javafx.controls" />

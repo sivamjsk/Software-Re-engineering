@@ -83,20 +83,17 @@ public class Pea extends GameElements{
             Iterator<Zombie> i = GamePlayController.allZombies.iterator();
             while (i.hasNext()) {
                 Zombie z = i.next();
-                if(z.getLane() == lane && !flag)
+                if(z.getLane() == lane && !flag && Math.abs(z.getX()-getX())<=3 )
                 {
-                    if(Math.abs(z.getX()-getX())<=3 && !flag)
-                    {
-                        this.flag = true;
-                        z.setHp(z.getHp()-1);
-                        img.setVisible(false);
-                        img.setDisable(true);
-                        peaAnimation.stop();
-                        Media splat = new Media(getClass().getResource("/assets/sounds/splat3.wav").toString());
-                        MediaPlayer mediaPlayer = new MediaPlayer(splat);
-                        mediaPlayer.setAutoPlay(true);
-                        mediaPlayer.play();
-                    }
+                    this.flag = true;
+                    z.setHp(z.getHp()-1);
+                    img.setVisible(false);
+                    img.setDisable(true);
+                    peaAnimation.stop();
+                    Media splat = new Media(getClass().getResource("/assets/sounds/splat3.wav").toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(splat);
+                    mediaPlayer.setAutoPlay(true);
+                    mediaPlayer.play();
                 }
             }
         }

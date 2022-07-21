@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * The Class LevelMenuController.
  */
-public class LevelMenuController {
+public class LevelMenuController extends GlowImage {
 
     /** The night mode. */
     @FXML
@@ -116,34 +116,6 @@ public class LevelMenuController {
             level5button.setDisable(false);
         }
 
-    }
-    
-    /**
-     * Glow image.
-     *
-     * @param event the event
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    @FXML
-    void glowImage(MouseEvent event) throws IOException{
-        Glow glow=new Glow();
-        Node source = (Node) event.getSource();
-        source.setEffect(glow);
-        glow.setLevel(0.2);
-    }
-
-    /**
-     * Stop glowing.
-     *
-     * @param event the event
-     * @throws IOException Signals that an I/O exception has occurred.
-     */
-    @FXML
-    void stopGlowing(MouseEvent event) throws IOException{
-        Node source= (Node) event.getSource();
-        Glow glow=(Glow) source.getEffect();
-        source.setEffect(glow);
-        glow.setLevel(0.0);
     }
 
     /**
