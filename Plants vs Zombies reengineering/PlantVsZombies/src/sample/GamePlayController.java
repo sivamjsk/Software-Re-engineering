@@ -22,102 +22,49 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Collections;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Iterator;
+import java.util.*;
 
 public class GamePlayController {
 
+    private final GamePlayController_progress gamePlayController_progress = new GamePlayController_progress(this);
+    private final GamePlayController_zombie gamePlayController_zombie = new GamePlayController_zombie(this);
+    private final GamePlayController_animation gamePlayController_animation = new GamePlayController_animation(this);
     @FXML
     private AnchorPane gamePlayRoot;
-    
-    /** The lawn image. */
     @FXML
     private ImageView lawnImage;
 
-    /** The sun count label. */
     @FXML
     private Label sunCountLabel;
 
-    
-    /** The progress bar. */
     @FXML
     private ProgressBar progressBar;
     @FXML
     private int levelNumber;
     @FXML
     private GridPane lawnGrid;
-    /** The sun count. */
     private static int sunCount;
-    
-    /** The Constant LANE1. */
-    static final int LANE1=50;
-    
-    /** The Constant LANE2. */
-    static final int LANE2=150;
-    
-    /** The Constant LANE3. */
-    static final int LANE3=250;
-    
-    /** The Constant LANE4. */
-    static final int LANE4=350;
-    
-    /** The Constant LANE5. */
-    static final int LANE5=450;
-    
-    /** The game status. */
-    static boolean gameStatus;
-    
-    /** The sun timeline. */
-    static Timeline sunTimeline;
-    
-    /** The sp Z 1. */
-    static Timeline spZ1;
-    
-    /** The sp Z 2. */
-    static Timeline spZ2;
-    
-    /** The sun count display. */
+    public static final int LANE1=50;
+    public static final int LANE2=150;
+    public static final int LANE3=250;
+    public static final int LANE4=350;
+    public static final int LANE5=450;
+    public static boolean gameStatus=false;
+    public static Timeline sunTimeline=null;
+    public static Timeline spZ1=null;
+    public static Timeline spZ2=null;
     private static Label sunCountDisplay;
-    private static double timeElapsed;
-    private static Level l;
-    
-    /** The all zombies. */
-    static List allZombies;
-    
-    /** The all plants. */
-    static List allPlants;
-    
-    /** The all mowers. */
-    static List allMowers;
-    
-    /** The zombie list 1. */
-    static ArrayList<Integer> zombieList1;
-    
-    /** The zombie list 2. */
-    static ArrayList<Integer> zombieList2;
-    
-    /** The d. */
-    private static DataTable d;
-    
-    /** The won game. */
-    static int wonGame = 0;
-    
-    /** The spawned zombies. */
-    private volatile int spawnedZombies = 0;
-    
-    /** The num zombies killed. */
-    static double numZombiesKilled = 0;
-    
-    /** The animation timelines. */
-    static ArrayList<Timeline> animationTimelines;
-    
-    /** The theme. */
-    static String theme = "day";
-    
-    /** The shovel. */
+    public static double timeElapsed;
+    public static Level l;
+    public static List allZombies=null;
+    public static List allPlants=null;
+    public static List allMowers=null;
+    //public static ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
+    public static DataTable d;
+    public static int wonGame = 0;
+    public static double numZombiesKilled = 0;
+    public static ArrayList<Timeline> animationTimelines=null;
+    public static String theme = "day";
     private Shovel shovel;
 
 
@@ -144,7 +91,8 @@ public class GamePlayController {
         this.levelNumber = levelNumber;
         Level l = new Level(levelNumber);
         this.l = l;
-        zombieList1 = d.getZombieList1();zombieList2 = d.getZombieList2();
+        GamePlayController_zombie.zombieList1 = d.getZombieList1();
+        GamePlayController_zombie.zombieList2 = d.getZombieList2();
         allPlants = d.getAllPlants();
         allZombies = d.getAllZombie();
         allMowers=d.getAllLawnMowers();
@@ -152,96 +100,34 @@ public class GamePlayController {
         timeElapsed = d.getTimeElapsed();
         animationTimelines = new ArrayList<Timeline>();
         LevelMenuController.status = d.getStatus();
-        startAnimations(rand);
+        gamePlayController_animation.startAnimations(rand);
         shovel=Shovel.getInstance();
         shovel.makeImage(gamePlayRoot);
         sunCountDisplay.setText(String.valueOf(sunCount));
         this.d=d;
         SidebarElement.getSideBarElements(levelNumber, gamePlayRoot);
-
-        gameProgress();
+        gamePlayController_progress.gameProgress();
         if(LevelMenuController.status){
             fallingSuns(rand);
-            zombieSpawner1(rand, 15);
-            zombieSpawner2(rand, 30);
-        }
-        else
-        {
-            String lawnPath = getClass().getResource("/assets/lawn_night.png").toString();
-            Image lawn = new Image(lawnPath, 1024, 600, false, false);
+            gamePlayController_zombie.zombieSpawner1(rand, 15);
+            gamePlayController_zombie.zombieSpawner2(rand, 30);}
+        else{
+            String lawn_path = getClass().getResource("/assets/lawn_night.png").toString();
+            Image lawn = new Image(lawn_path, 1024, 600, false, false);
             lawnImage.setImage(lawn);
-            zombieSpawner1(rand, 25);
-            zombieSpawner2(rand, 40);}}
+            gamePlayController_zombie.zombieSpawner1(rand, 25);
+            gamePlayController_zombie.zombieSpawner2(rand, 40);}}
 
     public void startAnimations(Random rand)
     {
-        synchronized (allPlants) {
-            Iterator<Plant> i = allPlants.iterator();
-            while (i.hasNext()) {
-                Plant p = i.next();
-                p.makeImage(lawnGrid);
-            }
-        }
-        synchronized (allMowers) {
-            Iterator<LawnMower> i = allMowers.iterator();
-            while (i.hasNext()) {
-                LawnMower l = i.next();
-                l.makeImage(gamePlayRoot);
-                l.checkZombie();
-            }
-        }
-        synchronized (allZombies)
-        {
-            Iterator<Zombie> i = allZombies.iterator();
-            while(i.hasNext())
-            {
-                Zombie z = i.next();
-                z.makeImage(gamePlayRoot);
-                z.moveZombie();
-            }
-        }
-        numZombiesKilled = l.getTotalZombies()*timeElapsed;
-        progressBar.setProgress(timeElapsed);
+        gamePlayController_animation.startAnimations(rand);
     }
 
     public void gameProgress()
     {
-        Timeline gameStatus = new Timeline(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                try {
-                    timeElapsed = ( numZombiesKilled / l.getTotalZombies());
-                    progressBar.setProgress(timeElapsed);
-                    if (wonGame == (-1)) {
-                        numZombiesKilled = 0;
-                        gameLost();
-                    } else if (wonGame == 0 && allZombies.size() == 0 && l.getTotalZombies() == spawnedZombies) {
-                        numZombiesKilled = 0;
-                        gameWon();
-                    }
-                    else if(progressBar.getProgress()>=1)
-                    {
-                        spZ1.stop();
-                        spZ2.stop();
-                        gameWon();
-                    }
-                    endAnimations();
-                }
-                catch (IOException e) {
-                	e.getMessage();
-                }
-            }
-        }));
-        gameStatus.setCycleCount(Timeline.INDEFINITE);
-        gameStatus.play();
-        animationTimelines.add(gameStatus);
+        gamePlayController_progress.gameProgress();
     }
 
-
-    public synchronized void updateSpawnedZombies()
-    {
-        this.spawnedZombies+=1;
-    }
 
     @FXML
     void loadGameMenu(MouseEvent event) throws IOException {
@@ -252,19 +138,6 @@ public class GamePlayController {
         GameMenuController controller = fxmlLoader.<GameMenuController>getController();
         controller.initData(gamePlayRoot, levelNumber,d,sunCount,allPlants, allZombies, allMowers, timeElapsed, l.getZombieList1(), l.getZombieList2());
         stage.show();
-    }
-
-    public static void removePlant(Plant p){
-        p.img.setVisible(false);
-        allPlants.remove(p);
-    }
-    public static void removeZombie(Zombie z){
-        z.img.setVisible(false);
-        allZombies.remove(z);
-    }
-    public static void removeMower(LawnMower l){
-        l.img.setVisible(false);
-        allMowers.remove(l);
     }
 
     public static void updateSunCount(int val) {
@@ -292,67 +165,25 @@ public class GamePlayController {
         sunTimeline = sunDropper;
         animationTimelines.add(sunDropper);
     }
-    public void ZombieSpawner(Random rand, ArrayList<Integer> zombieList){
-        int lane;
-        int laneNumber = rand.nextInt(5);
-        if(laneNumber==0) { 
-        	lane = LANE1;}
-        else if(laneNumber==1) { 
-        	lane = LANE2; }
-        else if(laneNumber==2) {
-        	lane = LANE3;}
-        else if(laneNumber==3) { 
-        	lane = LANE4;}
-        else { 
-        	lane = LANE5;}
-        try {
-            if(zombieList.get(0)==0) {
-                Level.spawnNormalZombie(GamePlayRoot, lane, laneNumber);
-                zombieList.remove(0);
-                updateSpawnedZombies(); }
-            else if(zombieList.get(0)==1) {
-                Level.spawnConeZombie(GamePlayRoot, lane, laneNumber);
-                zombieList.remove(0);
-                updateSpawnedZombies();  }
-            else if(zombieList.get(0)==2)  {
-                Level.spawnBucketZombie(GamePlayRoot, lane, laneNumber);
-                zombieList.remove(0);
-                updateSpawnedZombies();  } }
-        catch(IndexOutOfBoundsException e) {
-            if(zombieList==zombieList1){ endZombieSpawner1(); }
-            else { endZombieSpawner2();}
-        }
- }
-    public void zombieSpawner1(Random rand, double t){
-        Timeline spawnZombie1 = new Timeline(new KeyFrame(Duration.seconds(t), event -> {
-            ZombieSpawner(rand, zombieList1);
-        }));
 
-        spawnZombie1.setCycleCount(Timeline.INDEFINITE);
-        spawnZombie1.play();
-        spZ1 = spawnZombie1;
-        animationTimelines.add(spawnZombie1);
+    public void zombieSpawner1(Random rand, double t){
+
+        gamePlayController_zombie.zombieSpawner1(rand, t);
     }
 
     public void zombieSpawner2(Random rand, double t){
-        Timeline spawnZombie2 = new Timeline(new KeyFrame(Duration.seconds(t), event -> {
-            ZombieSpawner(rand, zombieList2);
-        }));
 
-        spawnZombie2.setCycleCount(Timeline.INDEFINITE);
-        spawnZombie2.play();
-        spZ2 = spawnZombie2;
-        animationTimelines.add(spawnZombie2);
+        gamePlayController_zombie.zombieSpawner2(rand, t);
     }
 
     public void endZombieSpawner1()
     {
-        spZ1.stop();
+        gamePlayController_zombie.endZombieSpawner1();
     }
 
     public void endZombieSpawner2()
     {
-        spZ2.stop();
+        gamePlayController_zombie.endZombieSpawner2();
     }
 
     @FXML
@@ -398,9 +229,9 @@ public class GamePlayController {
                     }
                 }
                 if (flag && (SidebarElement.getElement(SidebarElement.getCardSelected()).getCost() <= sunCount) ) {
-                	placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
+                    placePlant(SidebarElement.getCardSelected(), (int) (source.getLayoutX() + source.getParent().getLayoutX()), (int) (source.getLayoutY() + source.getParent().getLayoutY()), colIndex, rowIndex);
                     updateSunCount((-1) * SidebarElement.getElement(SidebarElement.getCardSelected()).getCost());
-                    SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(GamePlayRoot);
+                    SidebarElement.getElement(SidebarElement.getCardSelected()).setDisabledOn(gamePlayRoot);
                 }
             }
             SidebarElement.setCardSelectedToNull();
@@ -419,59 +250,73 @@ public class GamePlayController {
                 p=new Sunflower(x, y,row,col);
                 allPlants.add(p);
                 p.makeImage(lawnGrid);
+                p.attack(gamePlayRoot);
                 break;
             case 2:
                 p=new PeaShooter(x, y,row,col);
                 allPlants.add(p);
                 p.makeImage(lawnGrid);
+                p.attack(gamePlayRoot);
                 break;
             case 3:
                 p=new Wallnut(x, y,row,col);
                 allPlants.add(p);
                 p.makeImage(lawnGrid);
+                p.attack(gamePlayRoot);
                 break;
             case 4:
                 p=new CherryBomb(x, y,row,col);
                 allPlants.add(p);
                 p.makeImage(lawnGrid);
+                p.attack(gamePlayRoot);
                 break;
             case 5:
                 p=new Repeater(x, y,row,col);
                 allPlants.add(p);
                 p.makeImage(lawnGrid);
-
+                p.attack(gamePlayRoot);
                 break;
             case 6:
                 p=new Jalapeno(x, y,row,col);
                 allPlants.add(p);
                 p.makeImage(lawnGrid);
+                p.attack(gamePlayRoot);
                 break;
             default:
+                //System.out.println("No case match" + val);
         }
 
     }
 
-    public static void endAnimations()
-    {
-        for(int i = 0; i<animationTimelines.size(); i++)
-        {
-            animationTimelines.get(i).stop();
-        }
-    }
     public void gameLost() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
-        AnchorPane pane=fxmlLoader.load();
-        EndGameController controller = fxmlLoader.<EndGameController>getController();
-        controller.initData(levelNumber, false,d);
-        gamePlayRoot.getChildren().setAll(pane);
 
+        gamePlayController_progress.gameLost();
     }
     public void gameWon() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EndGame.fxml"));
-        AnchorPane pane=fxmlLoader.load();
-        EndGameController controller = fxmlLoader.<EndGameController>getController();
-        controller.initData(levelNumber, true,d);
-        gamePlayRoot.getChildren().setAll(pane);
 
+        gamePlayController_progress.gameWon();
     }
+
+    // Getter
+    public ProgressBar getProgressBar() {
+        return progressBar;
+    }
+
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+    public AnchorPane getGamePlayRoot() {
+        return gamePlayRoot;
+    }
+
+    public int getSpawnedZombies() {
+        return gamePlayController_zombie.getSpawnedZombies();
+    }
+
+    public GridPane getLawn_grid() {
+        return lawnGrid;
+    }
+
+
+
 }
