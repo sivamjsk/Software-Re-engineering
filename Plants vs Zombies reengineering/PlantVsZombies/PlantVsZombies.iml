@@ -14,5 +14,6 @@
     <orderEntry type="module" module-name="javafx.media" />
     <orderEntry type="module" module-name="javafx.fxml" />
     <orderEntry type="module" module-name="javafx.controls" />
+    <orderEntry type="library" name="PlantVsZombies" level="project" />
   </component>
 </module>

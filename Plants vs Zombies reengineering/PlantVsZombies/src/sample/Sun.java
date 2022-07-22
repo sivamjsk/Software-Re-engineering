@@ -1,12 +1,8 @@
 package sample;
 
-import javafx.animation.AnimationTimer;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
@@ -16,11 +12,7 @@ import javafx.util.Duration;
  */
 public class Sun extends GameElements{
     
-    /** The x. */
-    private int x;
-    
-    /** The y. */
-    private int y;
+
     
     /** The timeouttime. */
     private final int timeouttime;
@@ -35,7 +27,6 @@ public class Sun extends GameElements{
     public Sun(int x, int y, boolean fallingSun)
     {
         super(x, y, "/assets/sun.png", 50, 50);
-//      super.makeImage();
 
         if(fallingSun) { timeouttime=14000;}
         else { timeouttime=5000;}

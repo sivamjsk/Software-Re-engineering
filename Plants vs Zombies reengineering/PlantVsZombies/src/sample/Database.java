@@ -1,12 +1,8 @@
 package sample;
 
-import java.io.File;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.io.*;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 
 /**
@@ -19,9 +15,6 @@ public class Database implements Serializable {
     
     /** The max level. */
     private int maxLevel;
-    
-    /** The d. */
-    private static Database d;
 
     /** The database files. */
     private ArrayList<DataTable> databaseFiles;
@@ -68,16 +61,12 @@ public class Database implements Serializable {
      * @param d the d
      */
     public void removeData(DataTable d) {
-//        if (databaseFiles.contains(d)) { databaseFiles.remove(d);}
     	databaseFiles.remove(d);
     }
 
     /**
      * Delete all progress.
      */
-    public static void deleteAllProgress() {
-        d = new Database();
-    }
 
     /**
      * Gets the database files.

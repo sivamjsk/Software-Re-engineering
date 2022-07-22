@@ -1,14 +1,11 @@
 package sample;
 
-import javafx.scene.layout.Pane;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 /**
@@ -75,7 +72,6 @@ public class DataTable implements Serializable {
  *
  * @param levelNumber the level number
  */
-//    private String filename;
     public DataTable(int levelNumber){
         id++;
         this.gameId=id;
@@ -131,7 +127,6 @@ public class DataTable implements Serializable {
             Main.serialize();
         }
         catch (IOException e){
-            //System.out.println("Cant close stream");
         }
     }
 
@@ -195,7 +190,6 @@ public class DataTable implements Serializable {
      * @return the time elapsed
      */
     public double getTimeElapsed() {
-        //System.out.println(this.timeElapsed);
         return this.timeElapsed;
     }
 

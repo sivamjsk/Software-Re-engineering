@@ -2,7 +2,6 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,7 +9,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 /**
@@ -46,15 +44,6 @@ public class EndGameController {
     @FXML
     private ImageView nextLevelButton;
 
-    /** The main menu button. */
-    @FXML
-    private Button mainMenuButton;
-
-    /** The l. */
-    private int l;
-    
-    /** The game win. */
-    private boolean gameWin;
 
     /**
      * Go to main menu.
@@ -104,7 +93,9 @@ public class EndGameController {
     @FXML
     public void initData(int levelNumber, boolean gameWin,DataTable d){
         Main.getDatabase().removeData(d);
-        if (gameWin==false){ zombiesAteYourBrains.setVisible(true); }
+        if (!gameWin){
+            zombiesAteYourBrains.setVisible(true);
+        }
         else{
             if(levelNumber==5){ youAteZombiesBrains.setVisible(true); }
             else{
