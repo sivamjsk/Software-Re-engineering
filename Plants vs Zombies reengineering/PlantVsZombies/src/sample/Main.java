@@ -8,8 +8,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.io.*;
-import java.net.URL;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 
 /**
@@ -18,7 +22,7 @@ import java.net.URL;
 public class Main extends Application {
     
     /** The media player. */
-    public static MediaPlayer mediaPlayer=null;
+    static MediaPlayer mediaPlayer = null;
     
     /** The currentd. */
     private static Database currentd;
@@ -78,8 +82,6 @@ public class Main extends Application {
         finally {
         	if(out!=null) {
         		out.close();}
-            //System.out.println("Saved!");
-//            System.exit(0);
         }
     }
     
@@ -100,10 +102,6 @@ public class Main extends Application {
         catch (FileNotFoundException e){
             currentd=new Database();
         }
-//        catch (NullPointerException e) {
-//            currentd=new Database();
-//            //System.out.println("This user does not exist in the database");
-//        }
         if(in==null) {
         	currentd=new Database();
         }

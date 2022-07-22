@@ -1,17 +1,13 @@
 package sample;
 
 import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-import java.io.File;
-import java.io.Serializable;
 import java.util.Iterator;
 
 
@@ -114,7 +110,6 @@ public abstract class Zombie extends GameElements {
                     MediaPlayer mediaPlayer = new MediaPlayer(yuck);
                     mediaPlayer.setAutoPlay(true);
                     mediaPlayer.play();
-                    //System.out.println("removed");
                     break;
                 }
             }
@@ -194,7 +189,6 @@ public abstract class Zombie extends GameElements {
             }
             catch(java.util.ConcurrentModificationException e)
             {
-                //System.out.println("killed plant");
             }
             checkReachedHouse();
         }
@@ -227,7 +221,7 @@ public abstract class Zombie extends GameElements {
 
     public void IfApproachingPlant(Plant p){
 
-        if(reachedPlant==false)
+        if(!reachedPlant)
         {
             reachedPlant = true;
             isEating = true;

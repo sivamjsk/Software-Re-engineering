@@ -4,16 +4,13 @@ import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 
 /**
  * The Class Level.
  */
 public class Level {
-    
-    /** The level number. */
-    private int levelNumber;
+
     
     /** The num normal zombie. */
     private int numNormalZombie;
@@ -27,8 +24,7 @@ public class Level {
     /** The total zombies. */
     private int totalZombies;
     
-    /** The available plants. */
-    private ArrayList<Plant> availablePlants;
+
     
     /** The available zombies. */
     private ArrayList<Integer> availableZombies;
@@ -45,8 +41,6 @@ public class Level {
      * @param n the n
      */
     public Level(int n){
-        this.levelNumber=n;
-        this.availablePlants = new ArrayList<Plant>();
         this.availableZombies = new ArrayList<Integer>();
         this.zombieList1 = new ArrayList<Integer>();
         this.zombieList2 = new ArrayList<Integer>();

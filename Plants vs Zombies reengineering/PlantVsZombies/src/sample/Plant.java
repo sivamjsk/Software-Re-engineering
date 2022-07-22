@@ -6,9 +6,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-import java.io.Serializable;
-import java.nio.file.spi.FileSystemProvider;
-
 
 /**
  * The Class Plant.
@@ -19,7 +16,6 @@ public abstract class Plant extends GameElements{
     String path;
 
 /** The hp. */
-//    protected GridPane lawn;
     protected int hp;
     
     /** The col. */
@@ -43,7 +39,6 @@ public abstract class Plant extends GameElements{
     public Plant(int x, int y, String path, int hp,int width,int height,int col,int row){
         super(x,y,path,width,height);
         this.hp=hp;
-//        this.lawn=lawn;
         this.col=col;
         this.row=row;
 
@@ -59,15 +54,6 @@ public abstract class Plant extends GameElements{
         Image im=new Image(path,(double) width,(double) height,false,false);
         img.setImage(im);
         lawn.add(img,col,row,1,1);
-    }
-
-    /**
-     * Attack.
-     *
-     * @param p the p
-     */
-    public void attack(Pane p){
-
     }
 
     /**
@@ -91,6 +77,10 @@ public abstract class Plant extends GameElements{
             img.setVisible(false);
             img.setDisable(true);
         }
+    }
+
+    public void attack(Pane p){
+        System.out.println("Overriding method");
     }
 
     /**
