@@ -4,9 +4,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 
@@ -36,6 +38,7 @@ public class Shooter extends Plant {
     public Shooter(int x, int y, String path, int hp, int width, int height,int row,int col){
         super(x,y,path,hp,width,height,row,col);
         this.lane = col;
+//        attack();
     }
 
     /**

@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class GamePlayController_zombie {
     private final GamePlayController gamePlayController;
-    static ArrayList<Integer> zombieList1 = null;
-    static ArrayList<Integer> zombieList2 = null;
+    public static ArrayList<Integer> zombieList1 = null;
+    public static ArrayList<Integer> zombieList2 = null;
     volatile int spawnedZombies = 0;
 
     public GamePlayController_zombie(GamePlayController gamePlayController) {
@@ -21,6 +21,12 @@ public class GamePlayController_zombie {
         this.spawnedZombies += 1;
     }
 
+    /*
+    public static void removeZombie(Zombie z) {
+        z.img.setVisible(false);
+        GamePlayController.allZombies.remove(z);
+    }
+    */
     public void ZombieSpawner(Random rand, ArrayList<Integer> zombieList) {
         int lane;
         int laneNumber = rand.nextInt(5);

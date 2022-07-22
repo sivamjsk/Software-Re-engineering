@@ -2,6 +2,9 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -16,19 +19,22 @@ public class LevelMenuController extends GlowImage {
 
     /** The night mode. */
     @FXML
-    ImageView nightMode;
+    public ImageView nightMode;
 
     /** The day mode. */
     @FXML
-    ImageView dayMode;
+    public ImageView dayMode;
 
     /** The status. */
-    static boolean status = true;
+    public static boolean status = true;
 
     /** The level root. */
     @FXML
     private AnchorPane levelRoot;
 
+    /** The level 1 button. */
+    @FXML
+    private ImageView level1button;
 
     /** The level 2 button. */
     @FXML
@@ -62,6 +68,9 @@ public class LevelMenuController extends GlowImage {
     @FXML
     private ImageView lock5;
 
+    /** The backbutton. */
+    @FXML
+    private ImageView backbutton;
     
     /** The night theme. */
     @FXML
@@ -71,7 +80,10 @@ public class LevelMenuController extends GlowImage {
      * Initialize.
      */
     public void initialize(){
-        if(status)
+//        nightTheme=new ImageView(new Image("file:src/sample/assets/menu_dark_mode.png"));
+//        levelRoot.getChildren().add(nightTheme);
+//        nightTheme.setDisable(true);
+        if(status==true)
         {
             nightTheme.setVisible(false);
             dayMode.setVisible(true);
@@ -215,7 +227,7 @@ public class LevelMenuController extends GlowImage {
      */
     @FXML
     void changeGameTheme(MouseEvent event) throws IOException{
-        if(!dayMode.isVisible())
+        if(dayMode.isVisible()==false)
         {
             nightMode.setVisible(false);
             nightMode.setDisable(true);
@@ -224,7 +236,7 @@ public class LevelMenuController extends GlowImage {
             status = true;
             nightTheme.setVisible(false);
         }
-        else if(!nightMode.isVisible())
+        else if(nightMode.isVisible()==false)
         {
             dayMode.setVisible(false);
             dayMode.setDisable(true);

@@ -6,6 +6,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -71,7 +72,7 @@ public class CherryBomb extends Plant{
             img.setVisible(false);
             img.setDisable(true);
             powie.setVisible(true);
-
+            //System.out.println("attacking");
             synchronized (GamePlayController.allZombies)
             {
                 Iterator<Zombie> i = GamePlayController.allZombies.iterator();

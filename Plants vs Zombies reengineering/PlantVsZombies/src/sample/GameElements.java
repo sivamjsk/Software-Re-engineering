@@ -32,16 +32,17 @@ public abstract class GameElements implements Serializable{
     /**
      * Instantiates a new game elements.
      *
-     * @param xNew the x
-     * @param yNew the y
+     * @param x_ the x
+     * @param y_ the y
      * @param path the path
      * @param width the width
      * @param height the height
      */
-    public GameElements(int xNew, int yNew, String path,int width,int height){
-        this.x=xNew;
-        this.y=yNew;
+    public GameElements(int x_, int y_, String path,int width,int height){
+        this.x=x_;
+        this.y=y_;
         this.path=getClass().getResource(path).toString();
+//        this.pane=p;
         this.width=width;
         this.height=height;
 
