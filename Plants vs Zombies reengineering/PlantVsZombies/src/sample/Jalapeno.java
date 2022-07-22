@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -7,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -33,7 +35,8 @@ public class Jalapeno extends Plant {
     public Jalapeno(int x, int y,int row,int col) {
         super(x, y, "/assets/jalapeno.gif", 4,100,100,row,col);
         this.path=getClass().getResource("/assets/jalapeno.gif").toString();
-        fireViews=new ImageView[9];
+        //System.out.println("Placed plant");
+        fireViews=new ImageView[9];;
     }
     
     /**
@@ -64,6 +67,7 @@ public class Jalapeno extends Plant {
             try {
                 Thread.sleep(1650);
             } catch (InterruptedException e) {
+                //e.printStackTrace();
             }
             img.setVisible(false);
             img.setDisable(true);

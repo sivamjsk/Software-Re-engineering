@@ -46,6 +46,7 @@ public class SidebarElement extends GameElements{
     public SidebarElement(int x,int y,String path, int width,int height,int cost){
         super(x,y,path,width,height);
         this.cost=cost;
+//        super.makeImage();
     }
 
     /**
@@ -80,9 +81,12 @@ public class SidebarElement extends GameElements{
 
     public static void getSideBarElements(int level,Pane pane){
         String path;
+//        int x=24;
+//        int y=79;
         int width=97;
         int height=58;
         allElements=new HashMap<Integer, SidebarElement>();
+        path="file:assets/sunflowerCard.png";
         if(level>=1){
             path="/assets/sunflowerCard.png";
             SidebarElement sunflowerCard = new SidebarElement(x, y, path, width, height, 50);
@@ -108,8 +112,8 @@ public class SidebarElement extends GameElements{
             SidebarElement repeaterCard=new SidebarElement(x,y,path,width,height,200);
             setSidebarElements(allElements, repeaterCard, pane, 10000,5);
         }
-        String borderPath = SidebarElement.class.getResource("/assets/selectedCardBorder.png").toString();
-        selectedBorder = new ImageView(new Image(borderPath,110.0,72.0,false,false));
+        String border_path = SidebarElement.class.getResource("/assets/selectedCardBorder.png").toString();
+        selectedBorder = new ImageView(new Image(border_path,110.0,72.0,false,false));
         pane.getChildren().add(selectedBorder);
         selectedBorder.setVisible(false);
         selectedBorder.setDisable(true);
@@ -151,9 +155,7 @@ public class SidebarElement extends GameElements{
      * @return the element
      */
     public static SidebarElement getElement(int x){
-        if (allElements.containsKey(x)) {
-            return allElements.get(x);
-        }
+        if (allElements.containsKey(x)) { return allElements.get(x);}
         else {return null;}
     }
 

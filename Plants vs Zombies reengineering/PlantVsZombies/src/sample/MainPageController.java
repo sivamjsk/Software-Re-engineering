@@ -3,11 +3,16 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
@@ -19,6 +24,29 @@ public class MainPageController implements Initializable {
     @FXML
     private AnchorPane mainRoot;
 
+    /** The start game. */
+    @FXML
+    private Button startGame;
+
+    /** The start game 1. */
+    @FXML
+    private Button startGame1;
+
+    /** The startgame. */
+    @FXML
+    private ImageView startgame;
+
+    /** The exit game. */
+    @FXML
+    private ImageView exitGame;
+
+    /** The select level. */
+    @FXML
+    private ImageView selectLevel;
+
+    /** The load game. */
+    @FXML
+    private ImageView loadGame;
 
     /**
      * Exit game.
@@ -31,7 +59,9 @@ public class MainPageController implements Initializable {
             Main.serialize();
         }
         catch(IOException e){
+            //System.out.println("Could not save the progress :(");
         }
+//        System.exit(0);
     }
 
     /**
@@ -40,10 +70,9 @@ public class MainPageController implements Initializable {
      * @param url the url
      * @param rb the rb
      */
-    /** To unlock all the 5 levels uncomment this line*/
     @Override
     public void initialize(URL url, ResourceBundle rb){
-
+        //To unlock all the 5 levels uncomment this line
         Main.getDatabase().setMaxLevel(5);
     }
 
