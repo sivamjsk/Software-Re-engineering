@@ -32,7 +32,6 @@ public class MainPageController implements Initializable {
         }
         catch(IOException e){
         }
-//        System.exit(0);
     }
 
     /**

@@ -221,7 +221,7 @@ public abstract class Zombie extends GameElements {
 
     public void IfApproachingPlant(Plant p){
 
-        if(reachedPlant==false)
+        if(!reachedPlant)
         {
             reachedPlant = true;
             isEating = true;

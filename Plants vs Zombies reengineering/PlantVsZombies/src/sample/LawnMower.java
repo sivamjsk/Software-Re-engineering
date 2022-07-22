@@ -53,14 +53,14 @@ public class LawnMower extends GameElements{
                         Zombie z;
                         z = i.next();
                         if (z.getLane() == lane) {
-                            if ((Math.abs(z.getX() - getX()) <= 30) &&(activated == false))
+                            if ((Math.abs(z.getX() - getX()) <= 30) &&(!activated))
                             {
                                 activate();
                                 z.setHp(0);
                                 activated = true;
                                 z.getZombieAnimation().stop();
                             }
-                            else if ((Math.abs(z.getX() - getX()) <= 30) &&(activated == true))
+                            else if ((Math.abs(z.getX() - getX()) <= 30) &&(activated))
                             {
                                 z.setHp(0);
                                 z.getZombieAnimation().stop();

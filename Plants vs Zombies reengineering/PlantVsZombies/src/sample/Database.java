@@ -61,7 +61,6 @@ public class Database implements Serializable {
      * @param d the d
      */
     public void removeData(DataTable d) {
-//        if (databaseFiles.contains(d)) { databaseFiles.remove(d);}
     	databaseFiles.remove(d);
     }
 

@@ -80,8 +80,6 @@ public class SidebarElement extends GameElements{
 
     public static void getSideBarElements(int level,Pane pane){
         String path;
-//        int x=24;
-//        int y=79;
         int width=97;
         int height=58;
         allElements=new HashMap<Integer, SidebarElement>();
@@ -153,7 +151,9 @@ public class SidebarElement extends GameElements{
      * @return the element
      */
     public static SidebarElement getElement(int x){
-        if (allElements.containsKey(x)) { return allElements.get(x);}
+        if (allElements.containsKey(x)) {
+            return allElements.get(x);
+        }
         else {return null;}
     }
 

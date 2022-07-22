@@ -22,7 +22,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Iterator;
 
 public class GamePlayController {
 
@@ -49,22 +53,21 @@ public class GamePlayController {
     public static final int LANE3=250;
     public static final int LANE4=350;
     public static final int LANE5=450;
-    public static boolean gameStatus=false;
-    public static Timeline sunTimeline=null;
-    public static Timeline spZ1=null;
-    public static Timeline spZ2=null;
+    static boolean gameStatus=false;
+    static Timeline sunTimeline=null;
+    static Timeline spZ1=null;
+    static Timeline spZ2=null;
     private static Label sunCountDisplay;
-    public static double timeElapsed;
-    public static Level l;
-    public static List allZombies=null;
-    public static List allPlants=null;
-    public static List allMowers=null;
-    //public static ArrayList<Zombie> allZombies = new ArrayList<Zombie>();
-    public static DataTable d;
-    public static int wonGame = 0;
-    public static double numZombiesKilled = 0;
-    public static ArrayList<Timeline> animationTimelines=null;
-    public static String theme = "day";
+    static double timeElapsed;
+    static Level l;
+    static List allZombies=null;
+    static List allPlants=null;
+    static List allMowers=null;
+    static DataTable d;
+    static int wonGame = 0;
+    static double numZombiesKilled = 0;
+    static ArrayList<Timeline> animationTimelines=null;
+    static String theme = "day";
     private Shovel shovel;
 
 
@@ -283,7 +286,6 @@ public class GamePlayController {
                 p.attack(gamePlayRoot);
                 break;
             default:
-                //System.out.println("No case match" + val);
         }
 
     }
@@ -297,7 +299,7 @@ public class GamePlayController {
         gamePlayController_progress.gameWon();
     }
 
-    // Getter
+    /* Getter*/
     public ProgressBar getProgressBar() {
         return progressBar;
     }

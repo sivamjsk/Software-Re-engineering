@@ -82,8 +82,6 @@ public class Main extends Application {
         finally {
         	if(out!=null) {
         		out.close();}
-            //System.out.println("Saved!");
-//            System.exit(0);
         }
     }
     
@@ -104,10 +102,6 @@ public class Main extends Application {
         catch (FileNotFoundException e){
             currentd=new Database();
         }
-//        catch (NullPointerException e) {
-//            currentd=new Database();
-//            //System.out.println("This user does not exist in the database");
-//        }
         if(in==null) {
         	currentd=new Database();
         }

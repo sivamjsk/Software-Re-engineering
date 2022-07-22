@@ -64,7 +64,6 @@ public class Jalapeno extends Plant {
             try {
                 Thread.sleep(1650);
             } catch (InterruptedException e) {
-                //e.printStackTrace();
             }
             img.setVisible(false);
             img.setDisable(true);
