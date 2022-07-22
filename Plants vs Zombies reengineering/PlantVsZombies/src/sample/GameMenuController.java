@@ -106,7 +106,7 @@ public class GameMenuController {
     @FXML
     void restartGame(MouseEvent event) throws IOException {
         GamePlayController.gameStatus = false;
-        GamePlayController.endAnimations();
+        GamePlayController_animation.endAnimations();
         //System.out.println("restart called");
         Stage stage = (Stage) restartGameButton.getScene().getWindow();
         stage.close();
@@ -145,7 +145,7 @@ public class GameMenuController {
     @FXML
     void showMainMenu(MouseEvent event) throws IOException {
         GamePlayController.gameStatus = false;
-        GamePlayController.endAnimations();
+        GamePlayController_animation.endAnimations();
         AnchorPane pane= FXMLLoader.load(getClass().getResource("MainPage.fxml"));
         GamePlayRoot.getChildren().setAll(pane);
         Stage stage = (Stage) restartGameButton.getScene().getWindow();
