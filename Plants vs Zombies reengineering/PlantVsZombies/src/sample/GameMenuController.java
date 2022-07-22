@@ -95,6 +95,7 @@ public class GameMenuController {
     void restartGame(MouseEvent event) throws IOException {
         GamePlayController.gameStatus = false;
         GamePlayController_animation.endAnimations();
+        //System.out.println("restart called");
         Stage stage = (Stage) restartGameButton.getScene().getWindow();
         stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GamePlay.fxml"));
