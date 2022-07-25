@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import java.util.Iterator;
 
 
+
 /**
  * The Class Zombie.
  */
@@ -219,6 +220,11 @@ public abstract class Zombie extends GameElements {
     }
 
 
+    /**
+     * If approaching plant.
+     *
+     * @param p the p
+     */
     public void IfApproachingPlant(Plant p){
 
         if(!reachedPlant)
@@ -251,6 +257,9 @@ public abstract class Zombie extends GameElements {
         }
     }
 
+    /**
+     * If chomping stop.
+     */
     public void IfChompingStop()
     {
         if (this.chomping != null)
@@ -259,6 +268,11 @@ public abstract class Zombie extends GameElements {
         }
     }
 
+    /**
+     * Iterate plant.
+     *
+     * @param n the n
+     */
     public void IteratePlant(int n) {
         int foundPlant=0;
         synchronized (GamePlayController.allPlants) {

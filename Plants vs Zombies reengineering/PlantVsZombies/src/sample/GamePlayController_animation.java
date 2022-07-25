@@ -3,13 +3,29 @@ package sample;
 import java.util.Iterator;
 import java.util.Random;
 
+
+/**
+ * The Class GamePlayController_animation.
+ */
 public class GamePlayController_animation {
+    
+    /** The game play controller. */
     private final GamePlayController gamePlayController;
 
+    /**
+     * Instantiates a new game play controller animation.
+     *
+     * @param gamePlayController the game play controller
+     */
     public GamePlayController_animation(GamePlayController gamePlayController) {
         this.gamePlayController = gamePlayController;
     }
 
+    /**
+     * Start animations.
+     *
+     * @param rand the rand
+     */
     public void startAnimations(Random rand) {
         synchronized (GamePlayController.allPlants) {
             Iterator<Plant> i = GamePlayController.allPlants.iterator();
@@ -39,6 +55,9 @@ public class GamePlayController_animation {
         gamePlayController.getProgressBar().setProgress(GamePlayController.timeElapsed);
     }
 
+    /**
+     * End animations.
+     */
     public static void endAnimations() {
         for (int i = 0; i < GamePlayController.animationTimelines.size(); i++) {
             GamePlayController.animationTimelines.get(i).stop();
