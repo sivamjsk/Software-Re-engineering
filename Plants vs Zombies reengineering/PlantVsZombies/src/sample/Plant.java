@@ -78,7 +78,12 @@ public abstract class Plant extends GameElements{
             img.setDisable(true);
         }
     }
-
+    /**
+     * calls the attack method
+     *
+     *
+     * @param Pane p
+     */
     public void attack(Pane p){
         System.out.println("Overriding method");
     }

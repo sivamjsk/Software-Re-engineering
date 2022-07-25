@@ -7,20 +7,46 @@ import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.Random;
 
+
+/**
+ * The Class GamePlayController_zombie.
+ */
 public class GamePlayController_zombie {
+    
+    /** The game play controller. */
     private final GamePlayController gamePlayController;
+    
+    /** The zombie list 1. */
     static ArrayList<Integer> zombieList1 = null;
+    
+    /** The zombie list 2. */
     static ArrayList<Integer> zombieList2 = null;
+    
+    /** The spawned zombies. */
     volatile int spawnedZombies = 0;
 
+    /**
+     * Instantiates a new game play controller zombie.
+     *
+     * @param gamePlayController the game play controller
+     */
     public GamePlayController_zombie(GamePlayController gamePlayController) {
         this.gamePlayController = gamePlayController;
     }
 
+    /**
+     * Update spawned zombies.
+     */
     public synchronized void updateSpawnedZombies() {
         this.spawnedZombies += 1;
     }
 
+    /**
+     * Zombie spawner.
+     *
+     * @param rand the rand
+     * @param zombieList the zombie list
+     */
     public void ZombieSpawner(Random rand, ArrayList<Integer> zombieList) {
         int lane;
         int laneNumber = rand.nextInt(5);
@@ -58,6 +84,12 @@ public class GamePlayController_zombie {
         }
     }
 
+    /**
+     * Zombie spawner 1.
+     *
+     * @param rand the rand
+     * @param t the t
+     */
     public void zombieSpawner1(Random rand, double t) {
         Timeline spawnZombie1 = new Timeline(new KeyFrame(Duration.seconds(t), event -> {
             ZombieSpawner(rand, zombieList1);
@@ -69,6 +101,12 @@ public class GamePlayController_zombie {
         GamePlayController.animationTimelines.add(spawnZombie1);
     }
 
+    /**
+     * Zombie spawner 2.
+     *
+     * @param rand the rand
+     * @param t the t
+     */
     public void zombieSpawner2(Random rand, double t) {
         Timeline spawnZombie2 = new Timeline(new KeyFrame(Duration.seconds(t), event -> {
             ZombieSpawner(rand, zombieList2);
@@ -80,14 +118,25 @@ public class GamePlayController_zombie {
         GamePlayController.animationTimelines.add(spawnZombie2);
     }
 
+    /**
+     * End zombie spawner 1.
+     */
     public void endZombieSpawner1() {
         GamePlayController.spZ1.stop();
     }
 
+    /**
+     * End zombie spawner 2.
+     */
     public void endZombieSpawner2() {
         GamePlayController.spZ2.stop();
     }
 
+    /**
+     * Gets the spawned zombies.
+     *
+     * @return the spawned zombies
+     */
     public int getSpawnedZombies() {
         return spawnedZombies;
     }

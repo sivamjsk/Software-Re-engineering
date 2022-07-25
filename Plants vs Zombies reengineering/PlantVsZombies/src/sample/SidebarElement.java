@@ -56,7 +56,11 @@ public class SidebarElement extends GameElements{
     public int getCost(){
         return this.cost;
     }
-
+    /**
+     * Sets the sidebar element
+     *
+     * 
+     */
     public static void setSidebarElements(HashMap<Integer,SidebarElement> allElements,SidebarElement element, Pane pane, int timeout, int cardOrder) {
         element.makeImage(pane);
         element.timeoutTime = timeout;

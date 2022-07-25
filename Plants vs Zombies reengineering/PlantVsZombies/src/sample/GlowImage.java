@@ -8,7 +8,10 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 
-
+/**
+ * Glow image Class.
+ *
+ */
 
 public class GlowImage {
 
